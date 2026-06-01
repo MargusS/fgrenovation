@@ -4,72 +4,78 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand colors derived from the palette */
-  --olive-600: oklch(0.52 0.06 120); /* rgba(112, 128, 79, 1) */
-  --blue-muted: oklch(0.65 0.05 230); /* rgba(126, 162, 190, 1) */
-  --brown-warm: oklch(0.55 0.04 50); /* rgba(144, 118, 101, 1) */
-  
-  /* Core palette - warm, architectural, Swiss minimalist */
-  --background: oklch(0.975 0.005 80); /* Warm off-white / cream */
-  --foreground: oklch(0.20 0.01 50); /* Deep charcoal with warmth */
-  
-  --card: oklch(0.98 0.003 80);
-  --card-foreground: oklch(0.20 0.01 50);
-  
-  --popover: oklch(0.98 0.003 80);
-  --popover-foreground: oklch(0.20 0.01 50);
-  
-  --primary: oklch(0.52 0.06 120); /* Olive */
-  --primary-foreground: oklch(0.98 0.003 80);
-  
-  --secondary: oklch(0.95 0.005 80); /* Light warm beige */
-  --secondary-foreground: oklch(0.30 0.01 50);
-  
-  --muted: oklch(0.96 0.005 75); /* Subtle warm grey */
-  --muted-foreground: oklch(0.50 0.01 50); /* Mid grey with warmth */
-  
-  --accent: oklch(0.55 0.04 50); /* Warm brown */
-  --accent-foreground: oklch(0.98 0.003 80);
-  
-  --destructive: oklch(0.577 0.245 27.325);
+  /* ─── FG Rénovation Brand Palette ─── */
+  --color-golden:    oklch(0.72 0.09 85);   /* #B39C4D */
+  --color-palm:      oklch(0.55 0.08 130);  /* #768948 */
+  --color-fern:      oklch(0.50 0.08 130);  /* #607744 */
+  --color-hunter:    oklch(0.40 0.07 145);  /* #34623F */
+  --color-evergreen: oklch(0.25 0.05 150);  /* #1E2F23 */
+
+  /* ─── Semantic / UI Tokens ─── */
+  --background:             oklch(0.975 0.005 80);
+  --foreground:             oklch(0.20 0.01 50);
+
+  --card:                   oklch(0.98 0.003 80);
+  --card-foreground:        oklch(0.20 0.01 50);
+
+  --popover:                oklch(0.98 0.003 80);
+  --popover-foreground:     oklch(0.20 0.01 50);
+
+  --primary:                oklch(0.50 0.08 130);  /* Fern as primary */
+  --primary-foreground:     oklch(0.98 0.003 80);
+
+  --secondary:              oklch(0.95 0.005 80);
+  --secondary-foreground:   oklch(0.30 0.01 50);
+
+  --muted:                  oklch(0.96 0.005 75);
+  --muted-foreground:       oklch(0.50 0.01 50);
+
+  --accent:                 oklch(0.72 0.09 85);   /* Golden as accent */
+  --accent-foreground:      oklch(0.20 0.01 50);
+
+  --destructive:            oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  
-  --border: oklch(0.90 0.005 75); /* Subtle warm border */
-  --input: oklch(0.92 0.005 75);
-  --ring: oklch(0.52 0.06 120); /* Olive for focus rings */
-  
-  --radius: 0.125rem; /* Minimal radius for architectural feel */
+
+  --border:                 oklch(0.90 0.005 75);
+  --input:                  oklch(0.92 0.005 75);
+  --ring:                   oklch(0.50 0.08 130);  /* Fern for focus rings */
+
+  --radius: 0.125rem;
 }
 
+
 @theme inline {
-  --font-sans: 'Inter', 'Geist', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Geist Mono', monospace;
-  
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
+
+  /* ─── Brand Palette → Tailwind utilities ─── */
+  --color-golden:    var(--color-golden);
+  --color-palm:      var(--color-palm);
+  --color-fern:      var(--color-fern);
+  --color-hunter:    var(--color-hunter);
+  --color-evergreen: var(--color-evergreen);
+
+  /* ─── Semantic tokens ─── */
+  --color-background:            var(--background);
+  --color-foreground:            var(--foreground);
+  --color-card:                  var(--card);
+  --color-card-foreground:       var(--card-foreground);
+  --color-popover:               var(--popover);
+  --color-popover-foreground:    var(--popover-foreground);
+  --color-primary:               var(--primary);
+  --color-primary-foreground:    var(--primary-foreground);
+  --color-secondary:             var(--secondary);
+  --color-secondary-foreground:  var(--secondary-foreground);
+  --color-muted:                 var(--muted);
+  --color-muted-foreground:      var(--muted-foreground);
+  --color-accent:                var(--accent);
+  --color-accent-foreground:     var(--accent-foreground);
+  --color-destructive:           var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  
-  /* Brand colors */
-  --color-olive-600: var(--olive-600);
-  --color-blue-muted: var(--blue-muted);
-  --color-brown-warm: var(--brown-warm);
-  
+  --color-border:                var(--border);
+  --color-input:                 var(--input);
+  --color-ring:                  var(--ring);
+
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
@@ -80,16 +86,16 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-    
+
     *,
     *::before,
     *::after {
@@ -98,13 +104,13 @@
       transition-duration: 0.01ms !important;
     }
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv11", "ss01";
     text-rendering: optimizeLegibility;
   }
-  
+
   ::selection {
     background-color: oklch(0.52 0.06 120 / 0.2);
     color: oklch(0.20 0.01 50);
@@ -115,7 +121,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .text-pretty {
     text-wrap: pretty;
   }
