@@ -25,7 +25,7 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         width={140}
         height={40}
         priority
-        className="h-20 md:h-28 w-auto object-contain"
+        className="h-18 md:h-26 w-auto object-contain"
       />
     </motion.div>
   );
