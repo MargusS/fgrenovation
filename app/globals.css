@@ -3,78 +3,118 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  /* ─── FG Rénovation Brand Palette ─── */
-  --color-golden:    oklch(0.72 0.09 85);   /* #B39C4D */
-  --color-palm:      oklch(0.55 0.08 130);  /* #768948 */
-  --color-fern:      oklch(0.50 0.08 130);  /* #607744 */
-  --color-hunter:    oklch(0.40 0.07 145);  /* #34623F */
-  --color-evergreen: oklch(0.25 0.05 150);  /* #1E2F23 */
+  /* ─────────────────────────────────────────────
+     FG Rénovation — Brand Tokens
+     Raw named colors. Never use directly in
+     components — always go through semantic tokens.
+  ───────────────────────────────────────────── */
 
-  /* ─── Semantic / UI Tokens ─── */
-  --background:             oklch(0.975 0.005 80);
-  --foreground:             oklch(0.20 0.01 50);
+  /* Greens */
+  --brand-green-primary: oklch(0.49 0.09 138);   /* #5D7A40 — CTA, links, success */
+  --brand-green-light:   oklch(0.56 0.09 138);   /* #6F8F4E — hover, icons, decorative */
 
-  --card:                   oklch(0.98 0.003 80);
-  --card-foreground:        oklch(0.20 0.01 50);
+  /* Blue */
+  --brand-blue:          oklch(0.80 0.05 225);   /* #A9CBE3 — secondary btn, focus rings */
 
-  --popover:                oklch(0.98 0.003 80);
-  --popover-foreground:     oklch(0.20 0.01 50);
+  /* Taupe */
+  --brand-taupe:         oklch(0.64 0.03 55);    /* #A89587 — badges, borders, dividers */
 
-  --primary:                oklch(0.50 0.08 130);  /* Fern as primary */
-  --primary-foreground:     oklch(0.98 0.003 80);
+  /* Neutrals */
+  --brand-bg:            oklch(0.99 0.002 80);   /* #FCFCFB — main background */
+  --brand-surface:       oklch(0.96 0.007 65);   /* #F3EFEB — cards, alt sections */
+  --brand-ink:           oklch(0.21 0.02 152);   /* #1E2922 — primary text */
+  --brand-ink-muted:     oklch(0.48 0.02 152);   /* #64746B — secondary text */
 
-  --secondary:              oklch(0.95 0.005 80);
-  --secondary-foreground:   oklch(0.30 0.01 50);
+  /* ─────────────────────────────────────────────
+     Semantic UI Tokens
+     These are what Tailwind and components consume.
+     Changing a brand token above automatically
+     propagates here.
+  ───────────────────────────────────────────── */
 
-  --muted:                  oklch(0.96 0.005 75);
-  --muted-foreground:       oklch(0.50 0.01 50);
+  /* Backgrounds — 60% of the visual surface */
+  --background:          var(--brand-bg);
+  --foreground:          var(--brand-ink);
 
-  --accent:                 oklch(0.72 0.09 85);   /* Golden as accent */
-  --accent-foreground:      oklch(0.20 0.01 50);
+  /* Cards & surfaces */
+  --card:                var(--brand-surface);
+  --card-foreground:     var(--brand-ink);
 
-  --destructive:            oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --popover:             var(--brand-surface);
+  --popover-foreground:  var(--brand-ink);
 
-  --border:                 oklch(0.90 0.005 75);
-  --input:                  oklch(0.92 0.005 75);
-  --ring:                   oklch(0.50 0.08 130);  /* Fern for focus rings */
+  /* Primary — green, strictly for CTAs and primary actions */
+  --primary:             var(--brand-green-primary);
+  --primary-foreground:  oklch(0.99 0.002 80);   /* white text on green */
 
-  --radius: 0.125rem;
+  /* Secondary — blue, for secondary buttons and active states */
+  --secondary:           var(--brand-blue);
+  --secondary-foreground: var(--brand-ink);      /* dark text on blue */
+
+  /* Muted — surface tint + muted text */
+  --muted:               var(--brand-surface);
+  --muted-foreground:    var(--brand-ink-muted);
+
+  /* Accent — taupe, for badges, tags, subtle borders */
+  --accent:              var(--brand-taupe);
+  --accent-foreground:   var(--brand-ink);
+
+  /* Destructive */
+  --destructive:         oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0.002 80);
+
+  /* Borders & inputs */
+  --border:              oklch(0.90 0.01 65);    /* slightly warm light border */
+  --input:               oklch(0.93 0.007 65);
+  --ring:                var(--brand-blue);      /* blue focus ring per client spec */
+
+  /* Radius — architectural, minimal */
+  --radius: 0.25rem;
 }
-
 
 @theme inline {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Geist Mono', monospace;
 
-  /* ─── Brand Palette → Tailwind utilities ─── */
-  --color-golden:    var(--color-golden);
-  --color-palm:      var(--color-palm);
-  --color-fern:      var(--color-fern);
-  --color-hunter:    var(--color-hunter);
-  --color-evergreen: var(--color-evergreen);
+  /* ─── Raw brand palette as Tailwind utilities ───
+     Usage: text-green-primary, bg-brand-surface, etc.
+  ─────────────────────────────────────────────── */
+  --color-green-primary: var(--brand-green-primary);
+  --color-green-light:   var(--brand-green-light);
+  --color-brand-blue:    var(--brand-blue);
+  --color-brand-taupe:   var(--brand-taupe);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-ink:     var(--brand-ink);
+  --color-brand-ink-muted: var(--brand-ink-muted);
 
-  /* ─── Semantic tokens ─── */
-  --color-background:            var(--background);
-  --color-foreground:            var(--foreground);
-  --color-card:                  var(--card);
-  --color-card-foreground:       var(--card-foreground);
-  --color-popover:               var(--popover);
-  --color-popover-foreground:    var(--popover-foreground);
-  --color-primary:               var(--primary);
-  --color-primary-foreground:    var(--primary-foreground);
-  --color-secondary:             var(--secondary);
-  --color-secondary-foreground:  var(--secondary-foreground);
-  --color-muted:                 var(--muted);
-  --color-muted-foreground:      var(--muted-foreground);
-  --color-accent:                var(--accent);
-  --color-accent-foreground:     var(--accent-foreground);
-  --color-destructive:           var(--destructive);
+  /* ─── Semantic tokens → Tailwind ───
+     Usage: text-foreground, bg-primary, border-border, etc.
+  ─────────────────────────────────────────────── */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border:                var(--border);
-  --color-input:                 var(--input);
-  --color-ring:                  var(--ring);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
