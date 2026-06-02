@@ -7,9 +7,10 @@ import { Logo } from "@/components/ui/Logo";
 import { Container } from "./Container";
 
 const navItems = [
-  { label: "Projets", href: "#projets" },
-  { label: "Services", href: "#services" },
-  { label: "Bureau", href: "#bureau" },
+  { label: "Accueil", href: "#accueil" },
+  { label: "Nos Services", href: "#services" },
+  { label: "Réalisations", href: "#projets" },
+  { label: "À Propos", href: "#bureau" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -18,10 +19,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -45,26 +43,25 @@ export function Header() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-background/95 backdrop-blur-sm"
-            : "bg-transparent"
+          "fixed left-0 right-0 top-0 z-50 transition-all duration-300 py-3",
+          isScrolled ? "bg-background/95 shadow-sm backdrop-blur-sm" : "bg-transparent"
         )}
       >
-        <Container size="wide">
-          <nav className="flex h-16 items-center justify-between md:h-20">
-            <a href="#" onClick={(e) => handleNavClick(e, "#accueil")}>
-              <Logo variant={isScrolled ? "default" : "default"} />
+        <Container size="wide" className="px-6 md:px-2">
+          <nav className="flex h-22 items-center justify-between md:h-30">
+            {/* Logo */}
+            <a href="#" onClick={(e) => handleNavClick(e, "#accueil")} className="shrink-0">
+              <Logo />
             </a>
 
-            {/* Desktop Navigation */}
-            <ul className="hidden items-center gap-8 md:flex">
+            {/* Desktop nav — centered */}
+            <ul className="hidden items-center gap-6 md:flex lg:gap-8">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-sm tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm font-medium tracking-wide text-foreground/70 transition-colors hover:text-foreground"
                   >
                     {item.label}
                   </a>
@@ -72,32 +69,33 @@ export function Header() {
               ))}
             </ul>
 
-            {/* Mobile Menu Button */}
+            {/* Desktop CTA */}
+            <div className="hidden md:block shrink-0">
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "#contact")}
+                className="inline-flex items-center rounded-lg bg-green-primary px-6 py-2.5 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-green-light"
+              >
+                Devis Gratuit
+              </a>
+            </div>
+
+            {/* Mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
               aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
               <div className="flex flex-col gap-1.5">
-                <span
-                  className={cn(
-                    "block h-px w-5 bg-foreground transition-transform duration-300",
-                    isMobileMenuOpen && "translate-y-[4px] rotate-45"
-                  )}
-                />
-                <span
-                  className={cn(
-                    "block h-px w-5 bg-foreground transition-transform duration-300",
-                    isMobileMenuOpen && "-translate-y-[3px] -rotate-45"
-                  )}
-                />
+                <span className={cn("block h-px w-5 bg-foreground transition-transform duration-300", isMobileMenuOpen && "translate-y-[4px] rotate-45")} />
+                <span className={cn("block h-px w-5 bg-foreground transition-transform duration-300", isMobileMenuOpen && "-translate-y-[3px] -rotate-45")} />
               </div>
             </button>
           </nav>
         </Container>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile fullscreen menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -107,7 +105,7 @@ export function Header() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 bg-background md:hidden"
           >
-            <Container className="flex h-full flex-col items-center justify-center">
+            <Container className="flex h-full flex-col items-center justify-center gap-10">
               <nav>
                 <ul className="space-y-6 text-center">
                   {navItems.map((item, index) => (
@@ -115,7 +113,7 @@ export function Header() {
                       key={item.href}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.08 }}
                     >
                       <a
                         href={item.href}
@@ -128,6 +126,13 @@ export function Header() {
                   ))}
                 </ul>
               </nav>
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e as any, "#contact")}
+                className="inline-flex items-center rounded-lg bg-green-primary px-8 py-3 text-sm font-semibold tracking-wide text-primary-foreground"
+              >
+                Devis Gratuit
+              </a>
             </Container>
           </motion.div>
         )}
