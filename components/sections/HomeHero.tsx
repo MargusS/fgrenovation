@@ -7,10 +7,10 @@ import { heroSubtitles } from "@/data/company";
 import { fadeInUp, fadeIn } from "@/lib/motion";
 import { PaintWord } from "@/components/ui/PaintWord";
 
-const DEEP     = "#122A22";
-const GREEN   = "#2F5C4B";
-const BRASS   = "#C7A97A";
-const GRAPHITE    = "#181A1B";
+const DEEP     = "oklch(0.22 0.05 158)";
+const GREEN   = "oklch(0.40 0.07 158)";
+const BRASS   = "oklch(71.959% 0.06013 68.314)";
+const GRAPHITE    = "oklch(0.16 0.004 240)";
 const SURFACE = "#EAE9E4";
 
 // DEEP + GREEN (right side, wider) → horizontal, slide in from right
@@ -258,7 +258,7 @@ export function HomeHero() {
 
         {/* ── RIGHT: Sequenced curtain ── */}
         <motion.div
-          style={{ y: panelY }}
+
           className="relative hidden overflow-hidden md:block"
           aria-hidden="true"
         >
