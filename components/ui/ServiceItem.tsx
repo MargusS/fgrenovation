@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { Service } from "@/data/services";
@@ -11,14 +12,16 @@ interface ServiceItemProps {
   className?: string;
 }
 
+const iconClassName = "h-7 w-7 md:h-8 md:w-8 xl:h-9 xl:w-9";
+
 const serviceIcons: Record<string, React.ReactNode> = {
   platrerie: (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1"
-      className="h-6 w-6"
+      strokeWidth="1.15"
+      className={iconClassName}
     >
       <rect x="3" y="3" width="18" height="18" rx="2" />
       <line x1="3" y1="9" x2="21" y2="9" />
@@ -30,8 +33,8 @@ const serviceIcons: Record<string, React.ReactNode> = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1"
-      className="h-6 w-6"
+      strokeWidth="1.15"
+      className={iconClassName}
     >
       <path d="M19 3H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z" />
       <path d="M12 11v8" />
@@ -43,8 +46,8 @@ const serviceIcons: Record<string, React.ReactNode> = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1"
-      className="h-6 w-6"
+      strokeWidth="1.15"
+      className={iconClassName}
     >
       <rect x="3" y="3" width="7" height="7" />
       <rect x="14" y="3" width="7" height="7" />
@@ -57,8 +60,8 @@ const serviceIcons: Record<string, React.ReactNode> = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1"
-      className="h-6 w-6"
+      strokeWidth="1.15"
+      className={iconClassName}
     >
       <path d="M3 21h18" />
       <path d="M5 21V7l7-4 7 4v14" />
@@ -77,38 +80,37 @@ export function ServiceItem({ service, index, className }: ServiceItemProps) {
       variants={fadeInUp}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1 }}
-      className={cn(
-        "group border-t border-border py-8 md:py-10",
-        className
-      )}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: index * 0.08 }}
+      className={cn("group flex h-full flex-col", className)}
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-12">
-        <div className="flex items-center gap-4 md:w-48 md:flex-shrink-0">
-          <span className="text-olive-600">
+      <div className="flex h-full flex-col justify-center gap-5">
+        <div className="flex items-center gap-3.5">
+          <span className="text-white/90">
             {serviceIcons[service.id]}
           </span>
-          <h3 className="text-lg font-medium tracking-tight text-foreground">
+
+          <motion.h3
+            className="font-display text-[1.55rem] font-bold leading-none tracking-tight text-white md:text-[1.7rem] xl:text-[1.9rem]"
+            style={{ fontFamily: "var(--font-fraunces)" }}
+          >
             {service.title}
-          </h3>
+          </motion.h3>
         </div>
-        <div className="flex-1 space-y-4">
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            {service.description}
-          </p>
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {service.features.map((feature) => (
-              <li
-                key={feature}
-                className="flex items-center gap-2 text-xs text-muted-foreground"
-              >
-                <span className="h-1 w-1 rounded-full bg-olive-600" />
+
+        <p className="text-[0.92rem] leading-relaxed text-brand-surface/78 xl:text-[0.96rem]">
+          {service.description}
+        </p>
+
+        <ul className="flex flex-wrap gap-2.5 pt-1">
+          {service.features.map((feature) => (
+            <li key={feature}>
+              <span className="inline-flex items-center rounded-full border border-white/14 bg-white/8 px-3 py-1.5 text-[0.76rem] leading-none text-white/78 backdrop-blur-sm md:text-[0.8rem]">
                 {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </motion.article>
   );

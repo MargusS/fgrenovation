@@ -33,8 +33,8 @@ Notre équipe, formée aux techniques traditionnelles comme aux méthodes contem
 } as const;
 
 export const heroSubtitles = [
-  "Plâtrerie. Peinture. Sols. Façades.",
-  "Pour les particuliers et les professionnels.",
-  "Des chantiers propres et soignés.",
-  "Depuis 15 ans dans le canton de Vaud.",
+  "Plâtrerie",
+  "Peinture",
+  "Sols",
+  "Façades",
 ] as const;

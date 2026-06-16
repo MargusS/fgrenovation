@@ -4,72 +4,109 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand colors derived from the palette */
-  --olive-600: oklch(0.52 0.06 120); /* rgba(112, 128, 79, 1) */
-  --blue-muted: oklch(0.65 0.05 230); /* rgba(126, 162, 190, 1) */
-  --brown-warm: oklch(0.55 0.04 50); /* rgba(144, 118, 101, 1) */
-  
-  /* Core palette - warm, architectural, Swiss minimalist */
-  --background: oklch(0.975 0.005 80); /* Warm off-white / cream */
-  --foreground: oklch(0.20 0.01 50); /* Deep charcoal with warmth */
-  
-  --card: oklch(0.98 0.003 80);
-  --card-foreground: oklch(0.20 0.01 50);
-  
-  --popover: oklch(0.98 0.003 80);
-  --popover-foreground: oklch(0.20 0.01 50);
-  
-  --primary: oklch(0.52 0.06 120); /* Olive */
-  --primary-foreground: oklch(0.98 0.003 80);
-  
-  --secondary: oklch(0.95 0.005 80); /* Light warm beige */
-  --secondary-foreground: oklch(0.30 0.01 50);
-  
-  --muted: oklch(0.96 0.005 75); /* Subtle warm grey */
-  --muted-foreground: oklch(0.50 0.01 50); /* Mid grey with warmth */
-  
-  --accent: oklch(0.55 0.04 50); /* Warm brown */
-  --accent-foreground: oklch(0.98 0.003 80);
-  
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  
-  --border: oklch(0.90 0.005 75); /* Subtle warm border */
-  --input: oklch(0.92 0.005 75);
-  --ring: oklch(0.52 0.06 120); /* Olive for focus rings */
-  
-  --radius: 0.125rem; /* Minimal radius for architectural feel */
+  /* ─────────────────────────────────────────────
+     FG Rénovation — Brand Tokens
+     Raw named colors. Never use directly in
+     components — always go through semantic tokens.
+  ───────────────────────────────────────────── */
+
+  /* Greens */
+  --brand-fir:           oklch(0.22 0.05 158);   /* #122A22 — Deep Fir Green */
+  --brand-emerald:       oklch(0.40 0.07 158);   /* #2F5C4B — Muted Emerald Green */
+
+  /* Champagne */
+  --brand-champagne:     oklch(0.72 0.06 68);    /* #C7A97A — Champagne / Brass */
+
+  /* Neutrals */
+  --brand-bg:            oklch(0.99 0.002 80);   /* #FCFCFA — Swiss White */
+  --brand-surface:       oklch(0.93 0.005 70);   /* #EAE9E4 — Warm Stone Gray */
+  --brand-ink:           oklch(0.16 0.004 240);  /* #181A1B — Swiss Graphite */
+  --brand-ink-muted:     oklch(0.36 0.005 240);  /* #4A4E51 — Anthracite Gray */
+
+  /* ─────────────────────────────────────────────
+     Semantic UI Tokens
+     These are what Tailwind and components consume.
+     Changing a brand token above automatically
+     propagates here.
+  ───────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --background:          var(--brand-bg);
+  --foreground:          var(--brand-ink);
+
+  /* Cards & surfaces */
+  --card:                var(--brand-surface);
+  --card-foreground:     var(--brand-ink);
+
+  --popover:             var(--brand-surface);
+  --popover-foreground:  var(--brand-ink);
+
+  /* Primary — Fir green, strictly for CTAs and primary actions */
+  --primary:             var(--brand-fir);
+  --primary-foreground:  var(--brand-bg);
+
+  /* Secondary — Champagne, for secondary buttons and active states */
+  --secondary:           var(--brand-champagne);
+  --secondary-foreground: var(--brand-ink);
+
+  /* Muted */
+  --muted:               var(--brand-surface);
+  --muted-foreground:    var(--brand-ink-muted);
+
+  /* Accent — Emerald, for badges, tags, and supporting details */
+  --accent:              var(--brand-emerald);
+  --accent-foreground:   oklch(0.99 0.002 80);
+
+  /* Destructive */
+  --destructive:         oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0.002 80);
+
+  /* Borders & inputs */
+  --border:              oklch(0.88 0.005 70);   /* warm subtle border */
+  --input:               oklch(0.91 0.005 70);
+  --ring:                var(--brand-fir);       /* fir green focus ring */
+
+  /* Radius */
+  --radius: 0.25rem;
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Geist', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Geist Mono', monospace;
-  
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
+
+  /* ─── Raw brand palette as Tailwind utilities ───
+     Usage: text-brand-fir, bg-brand-surface, etc.
+  ─────────────────────────────────────────────── */
+  --color-brand-fir:        var(--brand-fir);
+  --color-brand-emerald:    var(--brand-emerald);
+  --color-brand-champagne:  var(--brand-champagne);
+  --color-brand-surface:    var(--brand-surface);
+  --color-brand-ink:        var(--brand-ink);
+  --color-brand-ink-muted:  var(--brand-ink-muted);
+
+  /* ─── Semantic tokens → Tailwind ───
+     Usage: text-foreground, bg-primary, border-border, etc.
+  ─────────────────────────────────────────────── */
+  --color-background:             var(--background);
+  --color-foreground:             var(--foreground);
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  
-  /* Brand colors */
-  --color-olive-600: var(--olive-600);
-  --color-blue-muted: var(--blue-muted);
-  --color-brown-warm: var(--brown-warm);
-  
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
@@ -80,16 +117,16 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-    
+
     *,
     *::before,
     *::after {
@@ -98,16 +135,16 @@
       transition-duration: 0.01ms !important;
     }
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv11", "ss01";
     text-rendering: optimizeLegibility;
   }
-  
+
   ::selection {
-    background-color: oklch(0.52 0.06 120 / 0.2);
-    color: oklch(0.20 0.01 50);
+    background-color: oklch(0.72 0.06 68 / 0.25); /* champagne tint */
+    color: oklch(0.16 0.004 240);
   }
 }
 
@@ -115,7 +152,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .text-pretty {
     text-wrap: pretty;
   }

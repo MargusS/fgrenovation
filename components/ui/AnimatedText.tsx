@@ -1,47 +1,94 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface AnimatedTextProps {
   texts: readonly string[];
   className?: string;
-  interval?: number;
+  speed?: number; // px/s — lower is slower
 }
+
+const SEPARATOR = "\u00A0\u00A0\u00A0\u00A0·\u00A0\u00A0\u00A0\u00A0";
 
 export function AnimatedText({
   texts,
   className,
-  interval = 3500,
+  speed = 50,
 }: AnimatedTextProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const copy1Ref = useRef<HTMLSpanElement>(null);
+  const [copyWidth, setCopyWidth] = useState(0);
 
+  const fullText = texts.join(SEPARATOR) + SEPARATOR;
+
+  // Measure the exact pixel width of one copy after render + font load
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % texts.length);
-    }, interval);
+    const measure = () => {
+      const w = copy1Ref.current?.offsetWidth ?? 0;
+      if (w > 0) setCopyWidth(w);
+    };
+    measure();
+    document.fonts.ready.then(measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [fullText]);
 
-    return () => clearInterval(timer);
-  }, [texts.length, interval]);
+  const duration = copyWidth > 0 ? copyWidth / speed : 0;
 
   return (
-    <div className={cn("relative h-8 overflow-hidden", className)}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{
-            duration: 0.5,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="absolute inset-0 flex items-center"
+    <div className={cn("relative overflow-hidden whitespace-nowrap", className)}>
+
+      {/* Fade masks */}
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16"
+        style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16"
+        style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
+
+      {/*
+        Outer wrapper: NO flex, NO inline-flex — plain block.
+        Inner copies: inline, zero gap, sit adjacently in normal text flow.
+        animation moves exactly -copyWidth px, which is the exact width of copy 1.
+        When it resets to 0, copy 2 has taken copy 1's position visually → seamless.
+      */}
+      <div
+        style={
+          duration > 0
+            ? {
+                display: "block",
+                whiteSpace: "nowrap",
+                willChange: "transform",
+                animation: `fg-marquee ${duration}s linear infinite`,
+              }
+            : { visibility: "hidden" }
+        }
+      >
+        <span
+          ref={copy1Ref}
+          className="inline text-sm tracking-wide text-muted-foreground"
         >
-          {texts[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
+          {fullText}
+        </span>
+        {/* Copy 2 — no space before it, aria-hidden, exact duplicate */}
+        <span
+          aria-hidden
+          className="inline text-sm tracking-wide text-muted-foreground"
+        >
+          {fullText}
+        </span>
+        <span
+          aria-hidden
+          className="inline text-sm tracking-wide text-muted-foreground"
+        >
+          {fullText}
+        </span>
+      </div>
+
+      <style>{`
+        @keyframes fg-marquee {
+          0%   { transform: translateX(0px); }
+          100% { transform: translateX(${copyWidth > 0 ? `-${copyWidth}px` : "0px"}); }
+        }
+      `}</style>
     </div>
   );
 }
