@@ -17,7 +17,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-20 md:py-28 lg:py-32",
+        "py-20 md:py-28 lg:py-0",
         background === "default" && "bg-background",
         background === "muted" && "bg-muted",
         background === "dark" && "bg-foreground text-background",
