@@ -7,25 +7,25 @@ import { heroSubtitles } from "@/data/company";
 import { fadeInUp, fadeIn } from "@/lib/motion";
 import { PaintWord } from "@/components/ui/PaintWord";
 
-const INK     = "#1E2922";
-const GREEN   = "#5D7A40";
-const TAUPE   = "#A89587";
-const BLUE    = "#A9CBE3";
-const SURFACE = "#F3EFEB";
+const DEEP     = "#122A22";
+const GREEN   = "#2F5C4B";
+const BRASS   = "#C7A97A";
+const GRAPHITE    = "#181A1B";
+const SURFACE = "#EAE9E4";
 
-// INK + GREEN (right side, wider) → horizontal, slide in from right
-// TAUPE + BLUE (left side, narrower) → vertical, fall from top
+// DEEP + GREEN (right side, wider) → horizontal, slide in from right
+// BRASS + GRAPHITE (left side, narrower) → vertical, fall from top
 const strips = [
-  { color: INK,   left: "78%", width: "22%", delay: 0,    direction: "horizontal" },
-  { color: GREEN, left: "60%", width: "18%", delay: 0.14, direction: "horizontal" },
-  { color: TAUPE, left: "46%", width: "14%", delay: 0,    direction: "vertical"   },
-  { color: BLUE,  left: "36%", width: "10%", delay: 0.14, direction: "vertical"   },
+  { color: DEEP,   left: "78%", width: "25%", delay: 0,    direction: "horizontal" },
+  { color: GREEN, left: "59.2%", width: "19%", delay: 1, direction: "horizontal" },
+  { color: GRAPHITE, left: "46.3%", width: "13%", delay: 0.2,    direction: "vertical"   },
+  { color: BRASS,  left: "39.5%", width: "7%", delay: 0.6, direction: "vertical"   },
 ] as const;
 
 const WIPE_DURATION  = 1.1;
-const HOLD_DURATION  = 3000;
+const HOLD_DURATION  = 2800;
 const ERASE_DURATION = 0.9;
-const LOOP_PAUSE     = 800;
+const LOOP_PAUSE     = 750;
 
 const clip = {
   vertical: {
@@ -97,11 +97,11 @@ function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
     };
 
     const runLoop = async () => {
-      await sleep(400);
+      await sleep(300);
 
       while (!cancelled) {
 
-        // ── PHASE 1: Reveal horizontal strips (INK + GREEN, indices 0 & 1) ──
+        // ── PHASE 1: Reveal horizontal strips (DEEP + GREEN, indices 0 & 1) ──
         await Promise.all([
           wipe(refs[0], 0, clip.horizontal.hidden, clip.horizontal.visible, WIPE_DURATION),
           wipe(refs[1], 1, clip.horizontal.hidden, clip.horizontal.visible, WIPE_DURATION),
@@ -109,7 +109,7 @@ function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
 
         if (cancelled) break;
 
-        // ── PHASE 2: Reveal vertical strips (TAUPE + BLUE, indices 2 & 3) ──
+        // ── PHASE 2: Reveal vertical strips (BRASS + GRAPHITE, indices 2 & 3) ──
         // Starts only after phase 1 fully resolves
         await Promise.all([
           wipe(refs[2], 2, clip.vertical.hidden, clip.vertical.visible, WIPE_DURATION),
@@ -124,8 +124,8 @@ function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
 
         // ── ERASE: vertical first (reverse of reveal), then horizontal ──
         await Promise.all([
-          wipe(refs[3], 3, clip.vertical.visible,   clip.vertical.erased,   ERASE_DURATION),
           wipe(refs[2], 2, clip.vertical.visible,   clip.vertical.erased,   ERASE_DURATION),
+          wipe(refs[3], 3, clip.vertical.visible,   clip.vertical.erased,   ERASE_DURATION),
         ]);
 
         if (cancelled) break;
@@ -223,7 +223,7 @@ export function HomeHero() {
               <a
                 href="#services"
                 onClick={(e) => handleScroll(e, "#services")}
-                className="inline-flex items-center rounded-4xl bg-secondary px-6 py-2 text-sm font-semibold tracking-wide text-secondary-foreground transition-colors hover:bg-brand-blue/80"
+                className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
               >
                 Nos Services
               </a>

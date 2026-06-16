@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const colors = [
-  "#5D7A40", // green-primary
-  "#A9CBE3", // brand-blue
-  "#A89587", // brand-taupe
+  "#122A22", // green-primary
+  "#2F5C4B", // grey-secondary
+  "#C7A97A", // brass
 ];
 
 const LETTER_DELAY = 0.2;   // stagger between each letter
