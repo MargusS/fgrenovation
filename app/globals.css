@@ -3,11 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import 'tailwindcss';
-@import 'tw-animate-css';
-
-@custom-variant dark (&:is(.dark *));
-
 :root {
   /* ─────────────────────────────────────────────
      FG Rénovation — Brand Tokens
@@ -16,20 +11,17 @@
   ───────────────────────────────────────────── */
 
   /* Greens */
-  --brand-green-primary: oklch(0.49 0.09 138);   /* #5D7A40 — CTA, links, success */
-  --brand-green-light:   oklch(0.56 0.09 138);   /* #6F8F4E — hover, icons, decorative */
+  --brand-fir:           oklch(0.22 0.05 158);   /* #122A22 — Deep Fir Green */
+  --brand-emerald:       oklch(0.40 0.07 158);   /* #2F5C4B — Muted Emerald Green */
 
-  /* Blue */
-  --brand-blue:          oklch(0.80 0.05 225);   /* #A9CBE3 — secondary btn, focus rings */
-
-  /* Taupe */
-  --brand-taupe:         oklch(0.64 0.03 55);    /* #A89587 — badges, borders, dividers */
+  /* Champagne */
+  --brand-champagne:     oklch(0.72 0.06 68);    /* #C7A97A — Champagne / Brass */
 
   /* Neutrals */
-  --brand-bg:            oklch(0.99 0.002 80);   /* #FCFCFB — main background */
-  --brand-surface:       oklch(0.96 0.007 65);   /* #F3EFEB — cards, alt sections */
-  --brand-ink:           oklch(0.21 0.02 152);   /* #1E2922 — primary text */
-  --brand-ink-muted:     oklch(0.48 0.02 152);   /* #64746B — secondary text */
+  --brand-bg:            oklch(0.99 0.002 80);   /* #FCFCFA — Swiss White */
+  --brand-surface:       oklch(0.93 0.005 70);   /* #EAE9E4 — Warm Stone Gray */
+  --brand-ink:           oklch(0.16 0.004 240);  /* #181A1B — Swiss Graphite */
+  --brand-ink-muted:     oklch(0.36 0.005 240);  /* #4A4E51 — Anthracite Gray */
 
   /* ─────────────────────────────────────────────
      Semantic UI Tokens
@@ -38,7 +30,7 @@
      propagates here.
   ───────────────────────────────────────────── */
 
-  /* Backgrounds — 60% of the visual surface */
+  /* Backgrounds */
   --background:          var(--brand-bg);
   --foreground:          var(--brand-ink);
 
@@ -49,32 +41,32 @@
   --popover:             var(--brand-surface);
   --popover-foreground:  var(--brand-ink);
 
-  /* Primary — green, strictly for CTAs and primary actions */
-  --primary:             var(--brand-green-primary);
-  --primary-foreground:  oklch(0.99 0.002 80);   /* white text on green */
+  /* Primary — Fir green, strictly for CTAs and primary actions */
+  --primary:             var(--brand-fir);
+  --primary-foreground:  var(--brand-bg);
 
-  /* Secondary — blue, for secondary buttons and active states */
-  --secondary:           var(--brand-blue);
-  --secondary-foreground: var(--brand-ink);      /* dark text on blue */
+  /* Secondary — Champagne, for secondary buttons and active states */
+  --secondary:           var(--brand-champagne);
+  --secondary-foreground: var(--brand-ink);
 
-  /* Muted — surface tint + muted text */
+  /* Muted */
   --muted:               var(--brand-surface);
   --muted-foreground:    var(--brand-ink-muted);
 
-  /* Accent — taupe, for badges, tags, subtle borders */
-  --accent:              var(--brand-taupe);
-  --accent-foreground:   var(--brand-ink);
+  /* Accent — Emerald, for badges, tags, and supporting details */
+  --accent:              var(--brand-emerald);
+  --accent-foreground:   oklch(0.99 0.002 80);
 
   /* Destructive */
   --destructive:         oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0.002 80);
 
   /* Borders & inputs */
-  --border:              oklch(0.90 0.01 65);    /* slightly warm light border */
-  --input:               oklch(0.93 0.007 65);
-  --ring:                var(--brand-blue);      /* blue focus ring per client spec */
+  --border:              oklch(0.88 0.005 70);   /* warm subtle border */
+  --input:               oklch(0.91 0.005 70);
+  --ring:                var(--brand-fir);       /* fir green focus ring */
 
-  /* Radius — architectural, minimal */
+  /* Radius */
   --radius: 0.25rem;
 }
 
@@ -83,15 +75,14 @@
   --font-mono: 'Geist Mono', monospace;
 
   /* ─── Raw brand palette as Tailwind utilities ───
-     Usage: text-green-primary, bg-brand-surface, etc.
+     Usage: text-brand-fir, bg-brand-surface, etc.
   ─────────────────────────────────────────────── */
-  --color-green-primary: var(--brand-green-primary);
-  --color-green-light:   var(--brand-green-light);
-  --color-brand-blue:    var(--brand-blue);
-  --color-brand-taupe:   var(--brand-taupe);
-  --color-brand-surface: var(--brand-surface);
-  --color-brand-ink:     var(--brand-ink);
-  --color-brand-ink-muted: var(--brand-ink-muted);
+  --color-brand-fir:        var(--brand-fir);
+  --color-brand-emerald:    var(--brand-emerald);
+  --color-brand-champagne:  var(--brand-champagne);
+  --color-brand-surface:    var(--brand-surface);
+  --color-brand-ink:        var(--brand-ink);
+  --color-brand-ink-muted:  var(--brand-ink-muted);
 
   /* ─── Semantic tokens → Tailwind ───
      Usage: text-foreground, bg-primary, border-border, etc.
@@ -152,8 +143,8 @@
   }
 
   ::selection {
-    background-color: oklch(0.52 0.06 120 / 0.2);
-    color: oklch(0.20 0.01 50);
+    background-color: oklch(0.72 0.06 68 / 0.25); /* champagne tint */
+    color: oklch(0.16 0.004 240);
   }
 }
 
