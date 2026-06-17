@@ -172,7 +172,7 @@ export function Header() {
                 )}
                 aria-label="FG Rénovation — Accueil"
               >
-                <Logo className="h-8 md:h-20" />
+                <Logo className="h-8 md:h-20" logoSrc={isMobile ? "/logo-short-version.svg" : undefined} />
               </a>
 
               {/* Desktop nav */}
@@ -215,21 +215,27 @@ export function Header() {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="relative z-50 flex h-8 w-8 items-center justify-center md:hidden"
+                className="relative z-50 flex h-9 w-9 items-center justify-center md:hidden"
                 aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded={isMobileMenuOpen}
               >
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col items-center justify-center gap-1.5">
                   <span
                     className={cn(
-                      "block h-px w-4 md:w-5 bg-foreground transition-transform duration-300",
-                      isMobileMenuOpen && "translate-y-[4px] rotate-45"
+                      "block h-px w-5 bg-foreground transition-all duration-300",
+                      isMobileMenuOpen ? "translate-y-2 rotate-45" : ""
                     )}
                   />
                   <span
                     className={cn(
-                      "block h-px w-4 md:w-5 bg-foreground transition-transform duration-300",
-                      isMobileMenuOpen && "-translate-y-[3px] -rotate-45"
+                      "block h-px w-5 bg-foreground transition-all duration-300",
+                      isMobileMenuOpen ? "opacity-0" : ""
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "block h-px w-5 bg-foreground transition-all duration-300",
+                      isMobileMenuOpen ? "-translate-y-2 -rotate-45" : ""
                     )}
                   />
                 </div>

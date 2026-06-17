@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils";
 interface LogoProps {
   className?: string;
   variant?: "default" | "light";
+  logoSrc?: string;
 }
 
-export function Logo({ className = "", variant = "default" }: LogoProps) {
-  const src = variant === "light" ? "/logo-light.svg" : "/logo.svg";
+export function Logo({ className = "", variant = "default", logoSrc }: LogoProps) {
+  const src = logoSrc ?? (variant === "light" ? "/logo-light.svg" : "/logo.svg");
 
   return (
     <motion.div
