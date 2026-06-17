@@ -18,7 +18,7 @@ export function ServicesGrid() {
       }}
     >
       <div
-        className="grid min-h-[calc(100dvh-var(--services-header-offset))] grid-cols-1 lg:grid-cols-[2fr_1fr]"
+        className="grid h-[min(calc(100dvh-var(--services-header-offset)),1130px)] grid-cols-1 lg:grid-cols-[2fr_1fr]"
         style={
           {
             "--services-header-offset": HEADER_OFFSET,

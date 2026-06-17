@@ -123,3 +123,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Ensure images inside constrained sections adapt to the section height */
+.section-img-fit img,
+.section-img-fit .next-image,
+.section-img-fit .__next_img__ {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}

@@ -177,9 +177,9 @@ export function HomeHero() {
     <section
       ref={sectionRef}
       id="accueil"
-      className="relative min-h-screen overflow-hidden bg-background"
+      className="relative py-0 h-[min(100vh,1130px)] overflow-hidden section-img-fit bg-background"
     >
-      <div className="grid min-h-screen grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[45fr_55fr]">
+      <div className="grid h-full grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[45fr_55fr]">
 
         {/* ── LEFT ── */}
         <motion.div

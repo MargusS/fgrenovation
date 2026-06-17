@@ -46,7 +46,7 @@ export function ProjectsShowcase() {
           className="sticky overflow-hidden"
           style={{
             top: HEADER_OFFSET,
-            height: `calc(100vh - ${HEADER_OFFSET}px)`,
+            height: `min(calc(100vh - ${HEADER_OFFSET}px), 1130px)`,
           }}
         >
           {projects.map((project, index) => (
