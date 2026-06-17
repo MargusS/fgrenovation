@@ -184,7 +184,7 @@ export function HomeHero() {
         {/* ── LEFT ── */}
         <motion.div
           style={{ opacity: textOpacity, y: textY }}
-          className="relative z-10 flex flex-col justify-center px-6 pb-8 pt-50 md:px-10 md:pb-20 lg:px-16"
+          className="relative z-10 flex flex-col justify-center px-6 pb-8 pt-0 md:pt-50 md:px-10 md:pb-20 lg:px-16"
         >
           <div className="max-w-xl space-y-1">
 
