@@ -54,7 +54,7 @@ export function ContactSection() {
   return (
     <Section id="contact" background="dark" className="relative overflow-hidden">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16  pt-40" >
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0 md:pt-40">
           {/* Contact Info */}
           <div>
             <motion.div
