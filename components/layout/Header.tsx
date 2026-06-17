@@ -262,6 +262,15 @@ export function Header() {
               transition={{ duration: prefersReducedMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="fixed top-0 right-0 z-50 h-full w-[85vw] max-w-[420px] md:hidden bg-background p-6 shadow-xl"
             >
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Cerrar menú"
+                className="absolute top-4 right-4 z-50 inline-flex h-8 w-8 items-center justify-center rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4">
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              </button>
               <div className="flex h-full flex-col justify-between">
                 <nav className="mt-2">
                   <ul className="space-y-2">
