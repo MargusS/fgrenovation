@@ -75,7 +75,11 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${fraunces.variable} bg-background`}>
       <body className="font-sans antialiased">
-        {children}
+        <main className="w-full min-h-screen">
+          <div className="w-full min-h-screen max-w-[2900px] mx-auto">
+            {children}
+          </div>
+        </main>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
