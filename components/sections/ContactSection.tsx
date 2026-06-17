@@ -54,7 +54,7 @@ export function ContactSection() {
   return (
     <Section id="contact" background="dark" className="relative overflow-hidden">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16  pt-40" >
           {/* Contact Info */}
           <div>
             <motion.div
@@ -166,14 +166,12 @@ export function ContactSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-stone-800 pt-8 text-center md:flex-row md:text-left"
+          className="mt-16 flex flex-col items-center gap-4 border-t border-stone-800 pt-10 text-center"
         >
           <span className="text-xs text-stone-500">
             © {new Date().getFullYear()} FG Rénovation. Tous droits réservés.
           </span>
-          <span className="text-xs text-stone-500">
-            Canton de Vaud, Suisse
-          </span>
+          <span className="text-xs text-stone-500">Canton de Vaud, Suisse</span>
         </motion.div>
       </Container>
     </Section>
