@@ -9,7 +9,7 @@ interface LogoProps {
   variant?: "default" | "light";
 }
 
-export function Logo({ className, variant = "default" }: LogoProps) {
+export function Logo({ className = "", variant = "default" }: LogoProps) {
   const src = variant === "light" ? "/logo-light.svg" : "/logo.svg";
 
   return (
@@ -25,7 +25,7 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         width={140}
         height={40}
         priority
-        className="h-16 md:h-20 w-auto object-contain"
+        className={cn("w-auto object-contain", className)}
       />
     </motion.div>
   );

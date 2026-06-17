@@ -21,6 +21,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHoverReveal, setIsHoverReveal] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const prefersReducedMotion = useReducedMotion();
   const lastScrollY = useRef(0);
@@ -35,6 +36,12 @@ export function Header() {
   };
 
   useEffect(() => {
+    // detect mobile (below md breakpoint)
+    const mql = window.matchMedia('(max-width: 767px)');
+    const handleMql = () => setIsMobile(mql.matches);
+    handleMql();
+    mql.addEventListener?.('change', handleMql);
+
     const onScroll = () => {
       const currentY = window.scrollY;
       const isScrollingDown = currentY > lastScrollY.current;
@@ -63,6 +70,19 @@ export function Header() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      mql.removeEventListener?.('change', handleMql);
+    };
+  }, [isMobileMenuOpen]);
+
+  // lock body scroll when mobile menu open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -105,20 +125,26 @@ export function Header() {
             setIsHoverReveal(false);
           }
         }}
-        className="fixed left-0 right-0 top-0 z-50 px-4 pt-4"
+        className="fixed left-0 right-0 top-0 z-50 px-4 pt-0 md:pt-4"
+        style={{ padding: isMobile ? "0" : undefined }}
       >
         <div
           className="mx-auto transition-[border-color,background-color,box-shadow,padding] duration-300"
-          style={{
+            style={{
             maxWidth: "1200px",
-            borderRadius: "9999px",
-            backgroundColor: shouldShowHeader
+            borderRadius: isMobile ? "0px" : "9999px",
+            // mobile: solid white background per request
+            backgroundColor: isMobile
+              ? "#ffffff"
+              : shouldShowHeader
               ? "oklch(0.72 0.06 68 / 0.15)"
               : "oklch(0.72 0.06 68 / 0.10)",
-            backdropFilter: "blur(10px) saturate(50%)",
-            WebkitBackdropFilter: "blur(10px) saturate(50%)",
-            border: "1px solid oklch(1 0 0 / 0.25)",
-            boxShadow: shouldShowHeader
+            backdropFilter: isMobile ? undefined : "blur(10px) saturate(50%)",
+            WebkitBackdropFilter: isMobile ? undefined : "blur(10px) saturate(50%)",
+            border: isMobile ? undefined : "1px solid oklch(1 0 0 / 0.25)",
+            boxShadow: isMobile
+              ? undefined
+              : shouldShowHeader
               ? "0 1px 0 0 oklch(1 0 0 / 0.5) inset, 0 -1px 0 0 oklch(0 0 0 / 0.04) inset, 0 8px 32px oklch(0.16 0.004 240 / 0.08)"
               : "0 1px 0 0 oklch(1 0 0 / 0.35) inset, 0 4px 18px oklch(0.16 0.004 240 / 0.05)",
           }}
@@ -126,7 +152,8 @@ export function Header() {
           <div
             className={cn(
               "px-6 md:px-8 transition-[padding] duration-300",
-              shouldShowHeader ? "py-2 md:py-4" : "py-1.5 md:py-2"
+              shouldShowHeader ? "py-2 md:py-4" : "py-1.5 md:py-2",
+              isMobile ? "py-0": ""
             )}
           >
             <nav
@@ -145,7 +172,7 @@ export function Header() {
                 )}
                 aria-label="FG Rénovation — Accueil"
               >
-                <Logo />
+                <Logo className="h-8 md:h-20" />
               </a>
 
               {/* Desktop nav */}
@@ -188,20 +215,20 @@ export function Header() {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
+                className="relative z-50 flex h-8 w-8 items-center justify-center md:hidden"
                 aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded={isMobileMenuOpen}
               >
                 <div className="flex flex-col gap-1.5">
                   <span
                     className={cn(
-                      "block h-px w-5 bg-foreground transition-transform duration-300",
+                      "block h-px w-4 md:w-5 bg-foreground transition-transform duration-300",
                       isMobileMenuOpen && "translate-y-[4px] rotate-45"
                     )}
                   />
                   <span
                     className={cn(
-                      "block h-px w-5 bg-foreground transition-transform duration-300",
+                      "block h-px w-4 md:w-5 bg-foreground transition-transform duration-300",
                       isMobileMenuOpen && "-translate-y-[3px] -rotate-45"
                     )}
                   />
@@ -212,64 +239,64 @@ export function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile fullscreen menu */}
+      {/* Mobile right-side sliding drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={prefersReducedMotion ? undefined : { opacity: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-            className="fixed inset-0 z-40 md:hidden"
-            style={{
-              backgroundColor: "oklch(0.72 0.06 68 / 0.20)",
-              backdropFilter: "blur(32px) saturate(180%)",
-              WebkitBackdropFilter: "blur(32px) saturate(180%)",
-            }}
-          >
-            <Container className="flex h-full flex-col items-center justify-center gap-10">
-              <nav>
-                <ul className="space-y-2 text-center">
-                  {navItems.map((item, index) => (
-                    <motion.li
-                      key={item.href}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, y: 8 }}
-                      transition={{
-                        delay: prefersReducedMotion ? 0 : index * 0.07,
-                        duration: prefersReducedMotion ? 0 : 0.3,
-                      }}
-                    >
-                      <a
-                        href={item.href}
-                        onClick={(e) => handleNavClick(e, item.href)}
-                        className="block rounded-2xl px-8 py-3 text-2xl font-light tracking-wide text-foreground transition-colors hover:bg-foreground/5"
-                      >
-                        {item.label}
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </nav>
+          <>
+            {/* backdrop overlay */}
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+              className="fixed inset-0 z-40 md:hidden"
+              style={{ backgroundColor: 'oklch(0 0 0 / 0.35)' }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-              <motion.a
-                href="#contact"
-                onClick={(e) =>
-                  handleNavClick(e as React.MouseEvent<HTMLAnchorElement>, "#contact")
-                }
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: prefersReducedMotion ? 0 : navItems.length * 0.07 + 0.05,
-                  duration: prefersReducedMotion ? 0 : 0.3,
-                }}
-                className="inline-flex items-center rounded-full bg-primary px-8 py-3 text-sm font-semibold tracking-wide text-primary-foreground transition-opacity hover:opacity-80"
-              >
-                Devis Gratuit
-              </motion.a>
-            </Container>
-          </motion.div>
+            {/* drawer */}
+            <motion.aside
+              initial={prefersReducedMotion ? false : { x: '100%' }}
+              animate={{ x: 0 }}
+              exit={prefersReducedMotion ? undefined : { x: '100%' }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 z-50 h-full w-[85vw] max-w-[420px] md:hidden bg-background p-6 shadow-xl"
+            >
+              <div className="flex h-full flex-col justify-between">
+                <nav className="mt-2">
+                  <ul className="space-y-2">
+                    {navItems.map((item, index) => (
+                      <motion.li
+                        key={item.href}
+                        initial={prefersReducedMotion ? false : { opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={prefersReducedMotion ? undefined : { opacity: 0, x: 12 }}
+                        transition={{ delay: prefersReducedMotion ? 0 : index * 0.06, duration: 0.28 }}
+                      >
+                        <a
+                          href={item.href}
+                          onClick={(e) => handleNavClick(e, item.href)}
+                          className="block rounded-lg px-4 py-3 text-lg font-medium tracking-wide text-foreground/90 hover:bg-foreground/4"
+                        >
+                          {item.label}
+                        </a>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </nav>
+
+                <div className="mt-4">
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleNavClick(e as React.MouseEvent<HTMLAnchorElement>, '#contact')}
+                    className="block w-full rounded-full bg-primary px-6 py-3 text-center text-sm font-semibold tracking-wide text-primary-foreground"
+                  >
+                    Devis Gratuit
+                  </a>
+                </div>
+              </div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </>
