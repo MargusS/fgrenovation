@@ -124,6 +124,13 @@
   }
 }
 
+/* Base font sizing: use rem units site-wide. Setting a stable root
+   font-size (16px) makes `1rem === 16px` and keeps Tailwind's text
+   utilities (which are in rem) predictable. */
+html {
+  font-size: 16px;
+}
+
 /* Ensure images inside constrained sections adapt to the section height */
 .section-img-fit img,
 .section-img-fit .next-image,
