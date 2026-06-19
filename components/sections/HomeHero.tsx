@@ -182,79 +182,79 @@ export function HomeHero() {
       <div className="grid h-full grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[45fr_55fr]">
 
         {/* ── LEFT ── */}
-        <motion.div
-          style={{ opacity: textOpacity, y: textY }}
-          className="relative z-10 flex flex-col justify-center px-6 pb-8 pt-0 md:pt-50 md:px-10 md:pb-20 lg:px-16"
-        >
-          <div className="max-w-xl space-y-1">
+<motion.div
+  style={{ opacity: textOpacity, y: textY }}
+  className="relative z-10 flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center md:items-start md:pt-50 md:px-10 md:pb-20 md:text-left lg:px-16"
+>
+  <div className="w-full space-y-1 md:max-w-xl">
 
-            <motion.h1
-              variants={fadeInUp}
-              initial="hidden"
-              animate="visible"
-              className="text-5xl font-medium uppercase leading-[1.05] tracking-tight text-foreground md:text-6xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
-            >
-              Donnons vie
-              <br />
-              à vos{" "}
-              <span className="font-extrabold">
-                <PaintWord word="projets" />
-              </span>
-            </motion.h1>
+    <motion.h1
+      variants={fadeInUp}
+      initial="hidden"
+      animate="visible"
+      className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground md:text-6xl"
+      style={{ fontFamily: "var(--font-fraunces)" }}
+    >
+      Donnons vie
+      <br />
+      à vos{" "}
+      <span className="font-extrabold">
+        <PaintWord word="projets" />
+      </span>
+    </motion.h1>
 
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.25 }}
-              className="text-base leading-relaxed text-muted-foreground md:text-lg"
-            >
-              <AnimatedText texts={heroSubtitles} className="h-10" speed={30} />
-            </motion.div>
+    <motion.div
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: 0.25 }}
+      className="text-base leading-relaxed text-muted-foreground md:text-lg"
+    >
+      <AnimatedText texts={heroSubtitles} className="h-10" speed={30} />
+    </motion.div>
 
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap items-center gap-3 pt-12"
-            >
-              <a
-                href="#services"
-                onClick={(e) => handleScroll(e, "#services")}
-                className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
-              >
-                Nos Services
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => handleScroll(e, "#contact")}
-                className="inline-flex items-center rounded-4xl border border-foreground/20 px-6 py-2 text-sm font-semibold tracking-wide text-foreground transition-colors hover:border-green-primary hover:text-green-primary"
-              >
-                Devis Gratuit
-              </a>
-            </motion.div>
+    <motion.div
+      variants={fadeInUp}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: 0.4 }}
+      className="flex flex-wrap items-center justify-center gap-3 pt-12 md:justify-start"
+    >
+      <a
+        href="#services"
+        onClick={(e) => handleScroll(e, "#services")}
+        className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
+      >
+        Nos Services
+      </a>
+      <a
+        href="#contact"
+        onClick={(e) => handleScroll(e, "#contact")}
+        className="inline-flex items-center rounded-4xl border border-foreground/20 px-6 py-2 text-sm font-semibold tracking-wide text-foreground transition-colors hover:border-green-primary hover:text-green-primary"
+      >
+        Devis Gratuit
+      </a>
+    </motion.div>
 
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.6 }}
-              className="pt-6"
-            >
-              <ul className="flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-x-5 md:gap-y-2">
-                {trustBadges.map((badge) => (
-                  <li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
-                    <span className="shrink-0 text-foreground/60">{badge.icon}</span>
-                    <span className="text-xs font-medium leading-tight">{badge.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+    <motion.div
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: 0.6 }}
+      className="pt-6"
+    >
+      <ul className="flex flex-col items-center gap-2 md:flex-row md:flex-wrap md:items-start md:gap-x-5 md:gap-y-2">
+        {trustBadges.map((badge) => (
+          <li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
+            <span className="shrink-0 text-foreground/60">{badge.icon}</span>
+            <span className="text-xs font-medium leading-tight">{badge.label}</span>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
 
-          </div>
-        </motion.div>
+  </div>
+</motion.div>
 
         {/* ── RIGHT: Sequenced curtain ── */}
         <motion.div
