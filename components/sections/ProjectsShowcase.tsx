@@ -52,7 +52,7 @@ export function ProjectsShowcase() {
   }, [startAutoplay]);
 
   return (
-    <Section id="projets" className="py-0 md:py-0 lg:py-0">
+    <Section id="projets" className="py-0 md:py-0 lg:py-0 h-[min(100vh,1130px)] overflow-hidden">
       <div ref={containerRef} className="min-h-[300vh]">
         <div
           className="sticky overflow-hidden"
@@ -70,11 +70,11 @@ export function ProjectsShowcase() {
                 pointerEvents: index === activeIndex ? "auto" : "none",
               }}
               transition={{ duration: 0.55 }}
-              className="absolute inset-0 grid grid-rows-[60%_40%] lg:grid-cols-[30%_70%] lg:grid-rows-1"
+              className="absolute inset-0 grid grid-rows-[1fr_1fr] lg:grid-cols-[40%_60%] lg:grid-rows-1"
               aria-hidden={index !== activeIndex}
             >
               {/* Left column — text */}
-              <div className="relative flex h-full items-end px-6 pb-8 pt-8 md:px-10 lg:px-16 lg:pb-24 lg:pt-12">
+              <div className="relative flex h-full items-center px-6 pb-8 pt-8 md:px-10 lg:px-16 lg:pb-20 lg:pt-12">
                 <div className="flex w-full flex-col justify-between">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -144,7 +144,7 @@ export function ProjectsShowcase() {
 
               {/* Right column — imagen con click, swipe e indicators mobile */}
               <div
-                className="relative flex h-full flex-col overflow-hidden bg-muted cursor-pointer"
+                className="relative flex h-full flex-col overflow-hidden bg-brand-bg cursor-pointer"
                 onClick={goToNext}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
