@@ -179,20 +179,20 @@ export function HomeHero() {
       id="accueil"
       className="relative py-0 h-[min(100vh,1130px)] overflow-hidden section-img-fit bg-background"
     >
-      <div className="grid h-full grid-cols-1 md:grid-cols-[1fr_1fr] lg:grid-cols-[45fr_55fr]">
+      <div className="grid h-full grid-cols-1 lg:grid-cols-[45fr_55fr]">
 
         {/* ── LEFT ── */}
 <motion.div
   style={{ opacity: textOpacity, y: textY }}
-  className="relative z-10 flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center md:items-start md:pt-50 md:px-10 md:pb-20 md:text-left lg:px-16"
+  className="relative z-10 flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center lg:items-start lg:pt-50 lg:px-10 lg:pb-20 lg:text-left lg:px-16"
 >
-  <div className="w-full space-y-1 md:max-w-xl">
+  <div className="w-full space-y-1 lg:max-w-xl">
 
     <motion.h1
       variants={fadeInUp}
       initial="hidden"
       animate="visible"
-      className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground md:text-6xl"
+      className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground lg:text-6xl"
       style={{ fontFamily: "var(--font-fraunces)" }}
     >
       Donnons vie
@@ -208,7 +208,7 @@ export function HomeHero() {
       initial="hidden"
       animate="visible"
       transition={{ delay: 0.25 }}
-      className="text-base leading-relaxed text-muted-foreground md:text-lg"
+      className="text-base leading-relaxed text-muted-foreground lg:text-lg"
     >
       <AnimatedText texts={heroSubtitles} className="h-10" speed={30} />
     </motion.div>
@@ -218,7 +218,7 @@ export function HomeHero() {
       initial="hidden"
       animate="visible"
       transition={{ delay: 0.4 }}
-      className="flex flex-wrap items-center justify-center gap-3 pt-12 md:justify-start"
+      className="flex flex-wrap items-center justify-center gap-3 pt-12 lg:justify-start"
     >
       <a
         href="#services"
@@ -243,7 +243,7 @@ export function HomeHero() {
       transition={{ delay: 0.6 }}
       className="pt-6"
     >
-      <ul className="flex flex-col items-center gap-2 md:flex-row md:flex-wrap md:items-start md:gap-x-5 md:gap-y-2">
+      <ul className="flex flex-col items-center gap-2 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
         {trustBadges.map((badge) => (
           <li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
             <span className="shrink-0 text-foreground/60">{badge.icon}</span>
@@ -259,7 +259,7 @@ export function HomeHero() {
         {/* ── RIGHT: Sequenced curtain ── */}
         <motion.div
 
-          className="relative hidden overflow-hidden md:block"
+          className="relative hidden overflow-hidden lg:block"
           aria-hidden="true"
         >
           <svg className="pointer-events-none absolute inset-0 z-20 h-full w-full opacity-[0.025]">
