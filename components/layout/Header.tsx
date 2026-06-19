@@ -72,7 +72,7 @@ export function Header() {
     <>
       {/* Desktop top hover zone */}
       <div
-        className="fixed left-0 right-0 top-0 z-[60] hidden h-6 md:block"
+        className="fixed left-0 right-0 top-0 z-[60] hidden h-6 lg:block"
         onMouseEnter={() => {
           if (!isHeaderVisible && !isMobileMenuOpen) {
             setIsHoverReveal(true);
@@ -125,14 +125,14 @@ export function Header() {
         >
           <div
             className={cn(
-              "px-6 md:px-8 transition-[padding] duration-300",
-              shouldShowHeader ? "py-2 md:py-4" : "py-1.5 md:py-2"
+              "px-6 lg:px-8 transition-[padding] duration-300",
+              shouldShowHeader ? "py-2 lg:py-4" : "py-1.5 lg:py-2"
             )}
           >
             <nav
               className={cn(
                 "flex items-center justify-between transition-[height] duration-300",
-                shouldShowHeader ? "h-16 md:h-20" : "h-12 md:h-14"
+                shouldShowHeader ? "h-16 lg:h-20" : "h-12 lg:h-14"
               )}
             >
               {/* Logo */}
@@ -151,7 +151,7 @@ export function Header() {
               {/* Desktop nav */}
               <ul
                 className={cn(
-                  "hidden items-center gap-1 md:flex lg:gap-2 transition-opacity duration-200",
+                  "hidden items-center gap-1 lg:flex lg:gap-2 transition-opacity duration-200",
                   shouldShowHeader ? "opacity-100" : "opacity-90"
                 )}
               >
@@ -172,7 +172,7 @@ export function Header() {
               </ul>
 
               {/* Desktop CTA */}
-              <div className="hidden shrink-0 md:block">
+              <div className="hidden shrink-0 lg:block">
                 <a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}
@@ -188,7 +188,7 @@ export function Header() {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
+                className="relative z-50 flex h-10 w-10 items-center justify-center xl:hidden"
                 aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded={isMobileMenuOpen}
               >
@@ -220,7 +220,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={prefersReducedMotion ? undefined : { opacity: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
             style={{
               backgroundColor: "oklch(0.72 0.06 68 / 0.20)",
               backdropFilter: "blur(32px) saturate(180%)",
