@@ -10,7 +10,6 @@ interface LogoProps {
 }
 
 export function Logo({ className, variant = "default" }: LogoProps) {
-  const src = variant === "light" ? "/logo-light.svg" : "/logo.svg";
 
   return (
     <motion.div
@@ -20,12 +19,21 @@ export function Logo({ className, variant = "default" }: LogoProps) {
       className={cn("flex items-center", className)}
     >
       <Image
-        src={src}
+        src="/logo-short-version.svg"
+        alt="FG Rénovation"
+        width={40}
+        height={40}
+        priority
+        className="block h-10 w-auto object-contain lg:hidden"
+      />
+
+      <Image
+        src={"/logo.svg"}
         alt="FG Rénovation"
         width={140}
         height={40}
         priority
-        className="h-16 md:h-20 w-auto object-contain"
+        className="hidden h-14 w-auto object-contain md:h-18 lg:block"
       />
     </motion.div>
   );

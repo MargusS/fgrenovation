@@ -13,6 +13,7 @@
   /* Greens */
   --brand-fir:           oklch(0.22 0.05 158);   /* #122A22 — Deep Fir Green */
   --brand-emerald:       oklch(0.40 0.07 158);   /* #2F5C4B — Muted Emerald Green */
+  --brand-forest:          oklch(0.22 0.07 152);
 
   /* Champagne */
   --brand-champagne:     oklch(0.72 0.06 68);    /* #C7A97A — Champagne / Brass */

@@ -2,8 +2,8 @@ export const company = {
   name: "FG Rénovation",
   tagline: "L'art du détail.",
   location: {
-    address: "Rue de l'Industrie 12",
-    city: "1030 Bussigny",
+    address: "Rue du Lac 22b",
+    city: "1020 Renens",
     canton: "Vaud",
     country: "Suisse",
     coordinates: {
@@ -12,13 +12,12 @@ export const company = {
     },
   },
   contact: {
-    phone: "+41 21 701 45 89",
+    phone: "+41 076 48 84 684",
     email: "contact@fg-renovation.ch",
     website: "www.fg-renovation.ch",
   },
   social: {
-    instagram: "https://instagram.com/fgrenovation",
-    linkedin: "https://linkedin.com/company/fgrenovation",
+    instagram: "https://www.instagram.com/fgrenovation.ch/",
   },
   hours: {
     weekdays: "Lundi – Vendredi : 07h00 – 17h30",

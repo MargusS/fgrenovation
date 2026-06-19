@@ -19,7 +19,7 @@ export function BureauSection() {
     <section
       id="bureau"
       ref={sectionRef}
-      className="bg-background py-20 md:py-28 lg:py-32"
+      className="bg-background py-20 lg:py-10"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
