@@ -52,7 +52,12 @@ const LinkedInIcon = () => (
 
 export function ContactSection() {
   return (
-    <Section id="contact" background="dark" className="relative overflow-hidden">
+    <Section
+      id="contact"
+      background="dark"
+      maxHeight="h-auto md:h-[min(100vh,1130px)]"
+      className="relative"
+    >
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0 lg:pt-40">
           {/* Contact Info */}
@@ -143,7 +148,7 @@ export function ContactSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="relative aspect-square overflow-hidden bg-stone-800 lg:aspect-auto lg:h-full lg:min-h-[400px]"
+            className="relative h-[min(50vh,400px)] bg-stone-800 md:aspect-auto md:h-[min(60vh,600px)] lg:aspect-auto lg:h-full lg:min-h-[400px]"
           >
             <iframe
               src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22008.73!2d${company.location.coordinates.lng}!3d${company.location.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c31b3c63e1791%3A0x5f1e4f8f8f8f8f8f!2sBussigny%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1234567890`}
@@ -154,7 +159,7 @@ export function ContactSection() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Localisation FG Rénovation"
-              className="absolute inset-0"
+              className="absolute inset-0 w-full h-full"
             />
             <div className="pointer-events-none absolute inset-0 bg-foreground/20" />
           </motion.div>
