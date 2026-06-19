@@ -13,18 +13,20 @@ export function Section({
   id,
   background = "default",
 }: SectionProps) {
+
   return (
     <section
       id={id}
       className={cn(
-        "py-20 md:py-28 lg:py-0",
+        "py-20 md:py-28 lg:py-0 section-img-fit",
+        // maxHClass,
         background === "default" && "bg-background",
         background === "muted" && "bg-muted",
         background === "dark" && "bg-foreground text-background",
         className
       )}
     >
-      {children}
+      <div className="h-full flex flex-col">{children}</div>
     </section>
   );
 }
