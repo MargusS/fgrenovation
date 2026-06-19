@@ -13,12 +13,13 @@ export function ServicesGrid() {
     <Section
       id="services"
       className="py-0"
+      maxHeight=""
       style={{
         scrollMarginTop: HEADER_OFFSET,
       }}
     >
       <div
-        className="grid h-[min(calc(100dvh-var(--services-header-offset)),1130px)] grid-cols-1 lg:grid-cols-[2fr_1fr]"
+        className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] lg:h-[min(calc(100dvh-var(--services-header-offset)),1130px)]"
         style={
           {
             "--services-header-offset": HEADER_OFFSET,
@@ -50,7 +51,7 @@ export function ServicesGrid() {
         </motion.div>
 
         {/* Right side — editorial panel */}
-        <div className="flex bg-brand-bg px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-12 xl:px-14">
+        <div className="order-first lg:order-last flex bg-brand-bg px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-12 xl:px-14">
           <div className="flex w-full items-center">
             <div className="w-full space-y-5">
               <span className="block text-[0.72rem] font-medium uppercase tracking-[0.24em] text-brand-ink-muted">
