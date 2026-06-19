@@ -151,7 +151,7 @@ export function ContactSection() {
             className="relative h-[min(60vh,600px)] bg-stone-800 lg:h-full lg:min-h-[400px]"
           >
             <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22008.73!2d${company.location.coordinates.lng}!3d${company.location.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c31b3c63e1791%3A0x5f1e4f8f8f8f8f8f!2sBussigny%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1234567890`}
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1576.5847269344831!2d6.588468704657873!3d46.5280311124846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e92c0fa7390cad%3A0x995bfa45a4e7f824!2sFG%20-%20R%C3%A9novation%20S%C3%A0rl!5e0!3m2!1ses!2ses!4v1781888939909!5m2!1ses!2ses`}
               width="100%"
               height="100%"
               style={{ border: 0, filter: "grayscale(100%) contrast(1.1)" }}
