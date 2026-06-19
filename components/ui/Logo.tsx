@@ -10,8 +10,8 @@ interface LogoProps {
   logoSrc?: string;
 }
 
-export function Logo({ className = "", variant = "default", logoSrc }: LogoProps) {
-  const src = logoSrc ?? (variant === "light" ? "/logo-light.svg" : "/logo.svg");
+export function Logo({ className, variant = "default" }: LogoProps) {
+  const src = variant === "light" ? "/logo-light.svg" : "/logo.svg";
 
   return (
     <motion.div
@@ -26,7 +26,7 @@ export function Logo({ className = "", variant = "default", logoSrc }: LogoProps
         width={140}
         height={40}
         priority
-        className={cn("w-auto object-contain", className)}
+        className="h-16 md:h-20 w-auto object-contain"
       />
     </motion.div>
   );
