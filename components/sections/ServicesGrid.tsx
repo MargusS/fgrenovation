@@ -52,7 +52,7 @@ export function ServicesGrid() {
         {/* Right side — editorial panel */}
         <div className="flex bg-brand-bg px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-12 xl:px-14">
           <div className="flex w-full items-center">
-            <div className="max-w-md space-y-5">
+            <div className="w-full space-y-5">
               <span className="block text-[0.72rem] font-medium uppercase tracking-[0.24em] text-brand-ink-muted">
                 Savoir-faire
               </span>
@@ -64,7 +64,7 @@ export function ServicesGrid() {
                 Nos domaines d&apos;intervention
               </h2>
 
-              <p className="max-w-sm pt-2 text-sm leading-relaxed text-brand-ink-muted md:text-[1rem]">
+              <p className="pt-2 text-sm leading-relaxed text-brand-ink-muted md:text-[1rem]">
                 Chaque projet est unique. Nous nous adaptons à vos besoins spécifiques
                 et proposons des solutions sur mesure, que ce soit pour une rénovation
                 partielle ou un chantier complet.
