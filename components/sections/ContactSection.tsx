@@ -55,7 +55,7 @@ export function ContactSection() {
     <Section
       id="contact"
       background="dark"
-      maxHeight="h-auto md:h-[min(100vh,1130px)]"
+      maxHeight="h-auto md:min-h-[min(100vh,1130px)]"
       className="relative"
     >
       <Container>
@@ -148,7 +148,7 @@ export function ContactSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="relative h-[min(50vh,400px)] bg-stone-800 md:aspect-auto md:h-[min(60vh,600px)] lg:aspect-auto lg:h-full lg:min-h-[400px]"
+            className="relative h-[min(60vh,600px)] bg-stone-800 lg:h-full lg:min-h-[400px]"
           >
             <iframe
               src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22008.73!2d${company.location.coordinates.lng}!3d${company.location.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c31b3c63e1791%3A0x5f1e4f8f8f8f8f8f!2sBussigny%2C%20Switzerland!5e0!3m2!1sen!2sch!4v1234567890`}
