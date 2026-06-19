@@ -42,24 +42,15 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const LinkedInIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
 export function ContactSection() {
   return (
     <Section
       id="contact"
-      background="dark"
       maxHeight="h-auto md:min-h-[min(100vh,1130px)]"
-      className="relative"
+      className="relative bg-brand-fir lg:py-16"
     >
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0 lg:pt-40">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0">
           {/* Contact Info */}
           <div>
             <motion.div
@@ -129,15 +120,6 @@ export function ContactSection() {
                 aria-label="Instagram"
               >
                 <InstagramIcon />
-              </a>
-              <a
-                href={company.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center border border-stone-700 text-stone-400 transition-colors hover:border-olive-600 hover:text-olive-500"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon />
               </a>
             </motion.div>
           </div>
