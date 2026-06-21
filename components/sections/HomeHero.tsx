@@ -22,10 +22,10 @@ const strips = [
 
 // ── Mobile corner strips ──
 const MOB_STRIPS = [
-  { color: DEEP,     corner: "tl" as const, points: "-5% -5%, 30% -5%, -5% 33%",     delay: 0,   opacity: 1 },
-  { color: GRAPHITE, corner: "tl" as const, points: "-5% -5%, 17% -5%, -5% 20%",     delay: 0.3, opacity: 1 },
-  { color: GREEN,    corner: "br" as const, points: "105% 105%, 68% 105%, 105% 67%", delay: 0.5, opacity: 1 },
-  { color: BRASS,    corner: "br" as const, points: "105% 105%, 81% 105%, 105% 79%", delay: 0.9, opacity: 1 },
+  { color: DEEP,     corner: "tl" as const, points: "-5% -5%, 42% -5%, -5% 46%",     delay: 0,   opacity: 1 },
+  { color: GRAPHITE, corner: "tl" as const, points: "-5% -5%, 24% -5%, -5% 27%",     delay: 0.3, opacity: 1 },
+  { color: GREEN,    corner: "br" as const, points: "105% 105%, 58% 105%, 105% 54%", delay: 0.5, opacity: 1 },
+  { color: BRASS,    corner: "br" as const, points: "105% 105%, 76% 105%, 105% 73%", delay: 0.9, opacity: 1 },
 ] as const;
 
 const WIPE_DURATION  = 1.1;
