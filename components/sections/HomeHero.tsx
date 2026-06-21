@@ -7,11 +7,10 @@ import { heroSubtitles } from "@/data/company";
 import { fadeInUp, fadeIn } from "@/lib/motion";
 import { PaintWord } from "@/components/ui/PaintWord";
 
-const DEEP     = "oklch(0.22 0.05 158)";
-const GREEN   = "oklch(0.40 0.07 158)";
-const BRASS   = "oklch(71.959% 0.06013 68.314)";
-const GRAPHITE    = "oklch(0.16 0.004 240)";
-const SURFACE = "#EAE9E4";
+const DEEP     = "#2B4537";
+const GREEN    = "#456E58";
+const BRASS    = "#C6AC8F";
+const GRAPHITE = "#343535";
 
 // DEEP + GREEN (right side, wider) → horizontal, slide in from right
 // BRASS + GRAPHITE (left side, narrower) → vertical, fall from top
@@ -288,11 +287,6 @@ export function HomeHero() {
           <div
             className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32"
             style={{ background: "linear-gradient(to right, var(--background), transparent)" }}
-          />
-
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: SURFACE, opacity: 0.18 }}
           />
         </motion.div>
 
