@@ -12,13 +12,20 @@ const GREEN    = "#456E58";
 const BRASS    = "#C6AC8F";
 const GRAPHITE = "#343535";
 
-// DEEP + GREEN (right side, wider) → horizontal, slide in from right
-// BRASS + GRAPHITE (left side, narrower) → vertical, fall from top
+// ── Desktop strips (right panel) ──
 const strips = [
-  { color: DEEP,   left: "78%", width: "25%", delay: 0,    direction: "horizontal" },
-  { color: GREEN, left: "59.2%", width: "19%", delay: 1, direction: "horizontal" },
-  { color: GRAPHITE, left: "46.3%", width: "13%", delay: 0.2,    direction: "vertical"   },
-  { color: BRASS,  left: "39.5%", width: "7%", delay: 0.6, direction: "vertical"   },
+  { color: DEEP,     left: "78%",   width: "25%", delay: 0,   direction: "horizontal" },
+  { color: GREEN,    left: "59.2%", width: "19%", delay: 1,   direction: "horizontal" },
+  { color: GRAPHITE, left: "46.3%", width: "13%", delay: 0.2, direction: "vertical"   },
+  { color: BRASS,    left: "39.5%", width: "7%",  delay: 0.6, direction: "vertical"   },
+] as const;
+
+// ── Mobile corner strips ──
+const MOB_STRIPS = [
+  { color: DEEP,     corner: "tl" as const, points: "-5% -5%, 30% -5%, -5% 33%",     delay: 0,   opacity: 0.75 },
+  { color: GRAPHITE, corner: "tl" as const, points: "-5% -5%, 17% -5%, -5% 20%",     delay: 0.3, opacity: 0.65 },
+  { color: GREEN,    corner: "br" as const, points: "105% 105%, 68% 105%, 105% 67%", delay: 0.5, opacity: 0.70 },
+  { color: BRASS,    corner: "br" as const, points: "105% 105%, 81% 105%, 105% 79%", delay: 0.9, opacity: 0.55 },
 ] as const;
 
 const WIPE_DURATION  = 1.1;
@@ -74,12 +81,12 @@ const trustBadges = [
   },
 ];
 
+// ── Desktop curtain loop ──
 function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
   useEffect(() => {
     let cancelled = false;
     const sleep = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
 
-    // Animate a single strip
     const wipe = (
       ref: React.RefObject<HTMLDivElement | null>,
       i: number,
@@ -153,6 +160,47 @@ function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
   }, []);
 }
 
+// ── Mobile curtain loop ──
+function useMobileCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
+  useEffect(() => {
+    let cancelled = false;
+    const sleep = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
+
+    const wipe = (
+      ref: React.RefObject<HTMLDivElement | null>,
+      i: number,
+      show: boolean
+    ) => {
+      if (!ref.current) return Promise.resolve();
+      const cfg = MOB_STRIPS[i];
+      const tx = cfg.corner === "tl" ? "translate(-70px,-70px)" : "translate(70px,70px)";
+      return animate(
+        ref.current,
+        show
+          ? { opacity: [0, cfg.opacity], transform: [tx, "translate(0px,0px)"] }
+          : { opacity: [cfg.opacity, 0], transform: ["translate(0px,0px)", tx] },
+        { delay: cfg.delay, duration: show ? WIPE_DURATION : ERASE_DURATION, ease: [0.76, 0, 0.24, 1] }
+      );
+    };
+
+    const runLoop = async () => {
+      await sleep(400);
+      while (!cancelled) {
+        await Promise.all(refs.map((ref, i) => wipe(ref, i, true)));
+        if (cancelled) break;
+        await sleep(HOLD_DURATION);
+        if (cancelled) break;
+        await Promise.all(refs.map((ref, i) => wipe(ref, i, false)));
+        if (cancelled) break;
+        await sleep(LOOP_PAUSE);
+      }
+    };
+
+    runLoop();
+    return () => { cancelled = true; };
+  }, []);
+}
+
 export function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -164,8 +212,11 @@ export function HomeHero() {
   const textY       = useTransform(scrollYProgress, [0, 1], ["0%", "6%"]);
   const panelY      = useTransform(scrollYProgress, [0, 1], ["0%", "-4%"]);
 
-  const stripRefs = useRef(strips.map(() => useRef<HTMLDivElement>(null)));
+  const stripRefs    = useRef(strips.map(() => useRef<HTMLDivElement>(null)));
+  const mobStripRefs = useRef(MOB_STRIPS.map(() => useRef<HTMLDivElement>(null)));
+
   useCurtainLoop(stripRefs.current);
+  useMobileCurtainLoop(mobStripRefs.current);
 
   const handleScroll = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -178,86 +229,102 @@ export function HomeHero() {
       id="accueil"
       className="relative py-0 h-[min(100vh,1130px)] overflow-hidden section-img-fit bg-background"
     >
+      {/* ── Mobile corner strips ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden" aria-hidden="true">
+        {MOB_STRIPS.map((s, i) => (
+          <div
+            key={i}
+            ref={mobStripRefs.current[i]}
+            className="absolute inset-0"
+            style={{
+              backgroundColor: s.color,
+              clipPath: `polygon(${s.points})`,
+              opacity: 0,
+              willChange: "opacity, transform",
+            }}
+          />
+        ))}
+      </div>
+
       <div className="grid h-full grid-cols-1 lg:grid-cols-[45fr_55fr]">
 
         {/* ── LEFT ── */}
-<motion.div
-  style={{ opacity: textOpacity, y: textY }}
-  className="relative z-10 flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center lg:items-start lg:pt-50 lg:px-10 lg:pb-20 lg:text-left lg:px-16"
->
-  <div className="w-full space-y-1 lg:max-w-xl">
-
-    <motion.h1
-      variants={fadeInUp}
-      initial="hidden"
-      animate="visible"
-      className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground lg:text-6xl"
-      style={{ fontFamily: "var(--font-fraunces)" }}
-    >
-      Donnons vie
-      <br />
-      à vos{" "}
-      <span className="font-extrabold">
-        <PaintWord word="projets" />
-      </span>
-    </motion.h1>
-
-    <motion.div
-      variants={fadeIn}
-      initial="hidden"
-      animate="visible"
-      transition={{ delay: 0.25 }}
-      className="text-base leading-relaxed text-muted-foreground lg:text-lg"
-    >
-      <AnimatedText texts={heroSubtitles} className="h-10" speed={30} />
-    </motion.div>
-
-    <motion.div
-      variants={fadeInUp}
-      initial="hidden"
-      animate="visible"
-      transition={{ delay: 0.4 }}
-      className="flex flex-wrap items-center justify-center gap-3 pt-12 lg:justify-start"
-    >
-      <a
-        href="#services"
-        onClick={(e) => handleScroll(e, "#services")}
-        className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
-      >
-        Nos Services
-      </a>
-      <a
-        href="#contact"
-        onClick={(e) => handleScroll(e, "#contact")}
-        className="inline-flex items-center rounded-4xl border border-foreground/20 px-6 py-2 text-sm font-semibold tracking-wide text-foreground transition-colors hover:border-green-primary hover:text-green-primary"
-      >
-        Devis Gratuit
-      </a>
-    </motion.div>
-
-    <motion.div
-      variants={fadeIn}
-      initial="hidden"
-      animate="visible"
-      transition={{ delay: 0.6 }}
-      className="pt-6"
-    >
-      <ul className="flex flex-col items-center gap-2 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
-        {trustBadges.map((badge) => (
-          <li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
-            <span className="shrink-0 text-foreground/60">{badge.icon}</span>
-            <span className="text-xs font-medium leading-tight">{badge.label}</span>
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-
-  </div>
-</motion.div>
-
-        {/* ── RIGHT: Sequenced curtain ── */}
         <motion.div
+          style={{ opacity: textOpacity, y: textY }}
+          className="relative z-10 flex flex-col items-center justify-center px-6 pb-8 pt-0 text-center lg:items-start lg:pt-50 lg:px-10 lg:pb-20 lg:text-left lg:px-16"
+        >
+          <div className="w-full space-y-1 lg:max-w-xl">
 
+            <motion.h1
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground lg:text-6xl"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Donnons vie
+              <br />
+              à vos{" "}
+              <span className="font-extrabold">
+                <PaintWord word="projets" />
+              </span>
+            </motion.h1>
+
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.25 }}
+              className="text-base leading-relaxed text-muted-foreground lg:text-lg"
+            >
+              <AnimatedText texts={heroSubtitles} className="h-10" speed={30} />
+            </motion.div>
+
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center gap-3 pt-12 lg:justify-start"
+            >
+              <a
+                href="#services"
+                onClick={(e) => handleScroll(e, "#services")}
+                className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
+              >
+                Nos Services
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => handleScroll(e, "#contact")}
+                className="inline-flex items-center rounded-4xl border border-foreground/20 px-6 py-2 text-sm font-semibold tracking-wide text-foreground transition-colors hover:border-green-primary hover:text-green-primary"
+              >
+                Devis Gratuit
+              </a>
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.6 }}
+              className="pt-6"
+            >
+              <ul className="flex flex-col items-center gap-2 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
+                {trustBadges.map((badge) => (
+                  <li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
+                    <span className="shrink-0 text-foreground/60">{badge.icon}</span>
+                    <span className="text-xs font-medium leading-tight">{badge.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+          </div>
+        </motion.div>
+
+        {/* ── RIGHT: Sequenced curtain (desktop only) ── */}
+        <motion.div
           className="relative hidden overflow-hidden lg:block"
           aria-hidden="true"
         >
