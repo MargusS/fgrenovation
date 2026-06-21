@@ -137,7 +137,6 @@ export function ContactSection() {
               src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1576.5847269344831!2d6.588468704657873!3d46.5280311124846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e92c0fa7390cad%3A0x995bfa45a4e7f824!2sFG%20-%20R%C3%A9novation%20S%C3%A0rl!5e0!3m2!1ses!2ses!4v1781888939909!5m2!1ses!2ses`}
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
