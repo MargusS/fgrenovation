@@ -10,7 +10,7 @@ export function ServicesGrid() {
 	return (
 		<Section
 			id="services"
-			className="relative !py-0 text-brand-ink"
+			className="relative py-0! text-brand-ink"
 		>
 			<div className="h-auto md:h-full grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
 
@@ -19,7 +19,7 @@ export function ServicesGrid() {
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true }}
-					className="h-auto md:h-full grid grid-cols-1 bg-brand-fir md:grid-cols-2"
+					className="h-auto md:h-full grid grid-cols-1 bg-[#2B4537] md:grid-cols-2"
 				>
 					{services.slice(0, 4).map((service, index) => (
 						<div

@@ -47,7 +47,7 @@ export function ContactSection() {
     <Section
       id="contact"
       maxHeight="h-auto md:min-h-[min(100vh,1130px)]"
-      className="relative bg-brand-fir lg:py-16"
+      className="relative bg-[#2B4537] lg:py-16"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0">
