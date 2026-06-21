@@ -118,6 +118,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center border border-stone-700 text-stone-400 transition-colors hover:border-olive-600 hover:text-olive-500"
                 aria-label="Instagram"
+                color="currentColor"
               >
                 <InstagramIcon />
               </a>
@@ -153,12 +154,12 @@ export function ContactSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-16 flex flex-col items-center gap-4 border-t border-stone-800 pt-10 text-center"
+          className="mt-16 flex flex-col items-center gap-4 border-t border-white/20 pt-10 text-center"
         >
-          <span className="text-xs text-stone-500">
+          <span className="text-xs text-white">
             © {new Date().getFullYear()} FG Rénovation. Tous droits réservés.
           </span>
-          <span className="text-xs text-stone-500">Canton de Vaud, Suisse</span>
+          <span className="text-xs text-white">Canton de Vaud, Suisse</span>
         </motion.div>
       </Container>
     </Section>

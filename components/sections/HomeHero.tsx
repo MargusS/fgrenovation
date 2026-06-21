@@ -283,7 +283,7 @@ export function HomeHero() {
               <a
                 href="#services"
                 onClick={(e) => handleScroll(e, "#services")}
-                className="inline-flex items-center rounded-4xl bg-primary px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
+                className="inline-flex items-center rounded-4xl bg-[#2B4537] px-6 py-2 text-sm font-semibold tracking-wide text-primary-foreground transition-colors hover:bg-brand-blue/80"
               >
                 Nos Services
               </a>

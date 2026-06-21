@@ -132,7 +132,7 @@ export function ProjectsShowcase() {
                           width: indicatorIndex === activeIndex ? "3.5rem" : "2rem",
                           backgroundColor:
                             indicatorIndex === activeIndex
-                              ? "var(--brand-emerald)"
+                              ? "var(--brand-forest)"
                               : "oklch(0.36 0.005 240 / 0.25)",
                         }}
                         aria-label={`Voir le projet ${indicatorIndex + 1}`}
@@ -172,7 +172,7 @@ export function ProjectsShowcase() {
                         width: indicatorIndex === activeIndex ? "3.5rem" : "2rem",
                         backgroundColor:
                           indicatorIndex === activeIndex
-                            ? "var(--brand-emerald)"
+                            ? "var(--brand-forest)"
                             : "oklch(0.36 0.005 240 / 0.25)",
                       }}
                       aria-label={`Voir le projet ${indicatorIndex + 1}`}
