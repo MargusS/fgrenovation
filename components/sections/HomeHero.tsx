@@ -22,10 +22,10 @@ const strips = [
 
 // ── Mobile corner strips ──
 const MOB_STRIPS = [
-  { color: DEEP,     corner: "tl" as const, points: "-5% -5%, 30% -5%, -5% 33%",     delay: 0,   opacity: 0.75 },
-  { color: GRAPHITE, corner: "tl" as const, points: "-5% -5%, 17% -5%, -5% 20%",     delay: 0.3, opacity: 0.65 },
-  { color: GREEN,    corner: "br" as const, points: "105% 105%, 68% 105%, 105% 67%", delay: 0.5, opacity: 0.70 },
-  { color: BRASS,    corner: "br" as const, points: "105% 105%, 81% 105%, 105% 79%", delay: 0.9, opacity: 0.55 },
+  { color: DEEP,     corner: "tl" as const, points: "-5% -5%, 30% -5%, -5% 33%",     delay: 0,   opacity: 1 },
+  { color: GRAPHITE, corner: "tl" as const, points: "-5% -5%, 17% -5%, -5% 20%",     delay: 0.3, opacity: 1 },
+  { color: GREEN,    corner: "br" as const, points: "105% 105%, 68% 105%, 105% 67%", delay: 0.5, opacity: 1 },
+  { color: BRASS,    corner: "br" as const, points: "105% 105%, 81% 105%, 105% 79%", delay: 0.9, opacity: 1 },
 ] as const;
 
 const WIPE_DURATION  = 1.1;
@@ -104,19 +104,12 @@ function useCurtainLoop(refs: React.RefObject<HTMLDivElement | null>[]) {
 
     const runLoop = async () => {
       await sleep(300);
-
       while (!cancelled) {
-
-        // ── PHASE 1: Reveal horizontal strips (DEEP + GREEN, indices 0 & 1) ──
         await Promise.all([
           wipe(refs[0], 0, clip.horizontal.hidden, clip.horizontal.visible, WIPE_DURATION),
           wipe(refs[1], 1, clip.horizontal.hidden, clip.horizontal.visible, WIPE_DURATION),
         ]);
-
         if (cancelled) break;
-
-        // ── PHASE 2: Reveal vertical strips (BRASS + GRAPHITE, indices 2 & 3) ──
-        // Starts only after phase 1 fully resolves
         await Promise.all([
           wipe(refs[2], 2, clip.vertical.hidden, clip.vertical.visible, WIPE_DURATION),
           wipe(refs[3], 3, clip.vertical.hidden, clip.vertical.visible, WIPE_DURATION),
