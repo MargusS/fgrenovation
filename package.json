@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@fluentui/react-icons": "^2.0.332",
-    "@hookform/resolvers": "^3.9.1",
     "@iconify-react/arcticons": "^1.0.7",
     "@iconify-react/carbon": "^1.0.7",
     "@iconify-react/cbi": "^1.0.22",
@@ -62,7 +61,6 @@
     "clsx": "^2.1.1",
     "cmdk": "1.1.1",
     "countup.js": "^2.10.1",
-    "date-fns": "4.1.0",
     "embla-carousel-react": "8.6.0",
     "framer-motion": "^12.40.0",
     "input-otp": "1.4.2",
@@ -73,16 +71,13 @@
     "react-day-picker": "9.13.2",
     "react-dom": "^19",
     "react-hook-form": "^7.54.1",
-    "react-icons": "^5.7.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
     "sonner": "^1.7.1",
     "tailwind-merge": "^3.3.1",
-    "vaul": "^1.1.2",
-    "zod": "^3.24.1"
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@iconify/react": "^6.0.2",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^24",
     "@types/react": "^19",
