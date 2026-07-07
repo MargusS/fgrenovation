@@ -1,28 +1,26 @@
 "use client";
 
-import {
-  Bath,
-  BrickWall,
-  Building2,
-  Hammer,
-  PaintRoller,
-  PanelsTopLeft,
-  Shapes,
-  WavesLadder,
-} from "lucide-react";
+import HouseOutlineIcon from "@iconify-react/mdi/house-outline";
+import PaintIcon from "@iconify-react/maki/paint";
+import Tiles2Icon from "@iconify-react/fluent-mdl2/tiles-2";
+import HeatingSquareIcon from "@iconify-react/iconoir/heating-square";
+import NoiseReducerIcon from "@iconify-react/arcticons/noise-reducer";
+import PhoenixPlafondIcon from "@iconify-react/cbi/phoenix-plafond";
+import BathLinearIcon from "@iconify-react/solar/bath-linear";
+import TableFurnitureIcon from "@iconify-react/mdi/table-furniture";
 import { motion } from "framer-motion";
 import type { Service } from "@/data/services";
 import { fadeInUp } from "@/lib/motion";
 
 const serviceIcons = {
-  "renovation-complete": Building2,
-  "platrerie-peinture": PaintRoller,
-  carrelage: Shapes,
-  "chape-seche-chauffage": WavesLadder,
-  isolation: BrickWall,
-  "faux-plafonds": PanelsTopLeft,
-  "salle-de-bains": Bath,
-  "amenagements-interieurs": Hammer,
+  "renovation-complete": HouseOutlineIcon,
+  "platrerie-peinture": PaintIcon,
+  carrelage: Tiles2Icon,
+  "chape-seche-chauffage": HeatingSquareIcon,
+  isolation: NoiseReducerIcon,
+  "faux-plafonds": PhoenixPlafondIcon,
+  "salle-de-bains": BathLinearIcon,
+  "amenagements-interieurs": TableFurnitureIcon,
 } as const;
 
 interface CardProps {
@@ -31,7 +29,9 @@ interface CardProps {
 }
 
 export function Card({ service, index }: CardProps) {
-  const Icon = serviceIcons[service.icon as keyof typeof serviceIcons] ?? Building2;
+  const Icon =
+    serviceIcons[service.icon as keyof typeof serviceIcons] ??
+    HouseOutlineIcon;
 
   return (
     <motion.article
@@ -44,7 +44,7 @@ export function Card({ service, index }: CardProps) {
     >
       <div className="flex flex-col items-center justify-center gap-6 text-center">
         <div className="flex items-center justify-center text-brand-ink">
-          <Icon className="h-10 w-10 stroke-[1.4] sm:h-11 sm:w-11" />
+          <Icon className="h-10 w-10 text-brand-fir sm:h-11 sm:w-11" height="1em" />
         </div>
 
         <h3 className="max-w-[12ch] text-balance text-[1.45rem] font-semibold leading-[1.15] tracking-tight text-brand-ink sm:text-[1.65rem]">
