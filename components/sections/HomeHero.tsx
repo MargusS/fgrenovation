@@ -16,12 +16,57 @@ const HERO_IMAGES = [
 
 const trustBadges = [
 	{
+		label: "Entreprise formatrice",
+		icon: (
+			<svg
+				width="18"
+				height="18"
+				viewBox="0 0 18 18"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.25"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				aria-hidden="true"
+			>
+				<path d="M1.75 6.2 9 2.5l7.25 3.7L9 9.9 1.75 6.2Z" />
+				<path d="M4.2 7.5v3.1c0 .6 2.1 2.15 4.8 2.15s4.8-1.55 4.8-2.15V7.5" />
+				<path d="M16.25 7v3.75" />
+				<circle cx="16.25" cy="11.9" r="0.65" fill="currentColor" stroke="none" />
+			</svg>
+		),
+	},
+	{
 		label: "Qualité garantie",
 		icon: (
 			<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor"
 				strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
 				<circle cx="9" cy="9" r="7.5" />
 				<polyline points="5.5,9.5 7.5,11.5 12.5,6.5" />
+			</svg>
+		),
+	},
+	{
+		label: "Respect des délais",
+		icon: (
+			<svg
+				width="18"
+				height="18"
+				viewBox="0 0 18 18"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.25"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				aria-hidden="true"
+			>
+				<rect x="2.25" y="3.25" width="13.5" height="11.5" rx="1.5" />
+				<path d="M5.2 1.75v3" />
+				<path d="M12.8 1.75v3" />
+				<path d="M2.25 6.3h13.5" />
+				<path d="M5.3 9h.01" />
+				<path d="M9 9h.01" />
+				<path d="M12.7 9h.01" />
 			</svg>
 		),
 	},
@@ -142,9 +187,9 @@ export function HomeHero() {
 							transition={{ delay: 0.6 }}
 							className="pt-6"
 						>
-							<ul className="flex flex-col items-center gap-2 lg:flex-row lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
+							<ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-x-4 lg:flex lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
 								{trustBadges.map((badge) => (
-									<li key={badge.label} className="flex items-center gap-2 text-muted-foreground">
+									<li key={badge.label} className="flex items-center justify-center gap-2 text-muted-foreground sm:justify-start">
 										<span className="shrink-0 text-foreground/60">{badge.icon}</span>
 										<span className="text-xs font-medium leading-tight">{badge.label}</span>
 									</li>
