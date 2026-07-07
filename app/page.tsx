@@ -13,7 +13,6 @@ export default function Home() {
         <HomeHero />
         <ServicesGrid />
         <ProjectsShowcase />
-        <BureauSection />
         <ContactSection />
       </main>
     </>
