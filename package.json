@@ -9,8 +9,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@fluentui/react-icons": "^2.0.332",
     "@hookform/resolvers": "^3.9.1",
+    "@iconify-react/carbon": "^1.0.7",
+    "@iconify-react/famicons": "^1.0.2",
     "@iconify-react/hugeicons": "^1.0.9",
+    "@iconify-react/ic": "^1.0.2",
+    "@iconify-react/iconamoon": "^1.0.2",
     "@iconify-react/maki": "^1.0.2",
     "@iconify-react/streamline-ultimate": "^1.0.2",
     "@iconify-react/teenyicons": "^1.0.2",
