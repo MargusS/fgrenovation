@@ -142,21 +142,46 @@ export function ProjectsShowcase() {
                 </div>
               </div>
 
-              {/* Right column — imagen con click, swipe e indicators mobile */}
+              {/* Right column — avant / apres */}
               <div
                 className="relative flex h-full flex-col overflow-hidden bg-brand-bg cursor-pointer"
                 onClick={goToNext}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="min-h-0 w-full flex-1 object-cover object-center"
-                  initial={{ scale: 1.03 }}
-                  animate={{ scale: index === activeIndex ? 1 : 1.03 }}
-                  transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-                />
+                <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-2 min-[426px]:grid-cols-2 min-[426px]:grid-rows-1">
+                  <motion.div
+                    initial={{ scale: 1.03 }}
+                    animate={{ scale: index === activeIndex ? 1 : 1.03 }}
+                    transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="relative overflow-hidden"
+                  >
+                    <img
+                      src={project.imageBefore}
+                      alt={`${project.title} avant`}
+                      className="h-full w-full object-cover object-center"
+                    />
+                    <span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">
+                      Avant
+                    </span>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ scale: 1.03 }}
+                    animate={{ scale: index === activeIndex ? 1 : 1.03 }}
+                    transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="relative overflow-hidden"
+                  >
+                    <img
+                      src={project.imageAfter}
+                      alt={`${project.title} après`}
+                      className="h-full w-full object-cover object-center"
+                    />
+                    <span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">
+                      Après
+                    </span>
+                  </motion.div>
+                </div>
 
                 {/* Indicators mobile — fluyen debajo de la imagen via flex, ocultos en lg */}
                 <div
