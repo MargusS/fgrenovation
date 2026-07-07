@@ -4,6 +4,7 @@ import { ProjectsShowcase } from "@/components/sections/ProjectsShowcase";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { WhyChooseUsStrip } from "@/components/sections/WhyChooseUsStrip";
+import { WorkMethodSection } from "@/components/sections/WorkMethodSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <WhyChooseUsStrip />
         <ServicesGrid />
         <ProjectsShowcase />
+        <WorkMethodSection />
         <ContactSection />
       </main>
     </>
