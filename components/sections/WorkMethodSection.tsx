@@ -41,7 +41,7 @@ export function WorkMethodSection() {
           className="max-lg:flex max-lg:w-full max-lg:justify-center max-lg:text-center lg:text-left"
         >
           <h2
-            className="max-lg:w-full text-[clamp(2.25rem,10vw,3rem)] font-bold uppercase leading-[1.05] tracking-tight text-foreground lg:inline-block lg:text-6xl"
+            className="max-lg:w-full text-[clamp(1.85rem,8.1vw,2.45rem)] font-bold uppercase leading-[1.05] tracking-tight text-foreground lg:inline-block lg:text-[3.25rem]"
             style={{ fontFamily: "var(--font-epilogue)" }}
           >
             Notre méthode

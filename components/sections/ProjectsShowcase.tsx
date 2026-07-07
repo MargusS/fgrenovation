@@ -86,14 +86,14 @@ export function ProjectsShowcase() {
                     className="space-y-10 md:space-y-20"
                   >
                     <div className="space-y-3">
-                      <span className="block text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                      <span className="block text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-[0.95rem]">
                         Réalisations
                       </span>
                       <div className="flex items-end justify-between gap-6">
-                        <h2 className="text-2xl font-light tracking-tight text-foreground md:text-3xl lg:text-4xl">
+                        <h2 className="text-3xl font-light tracking-tight text-foreground md:text-4xl lg:text-5xl">
                           Projets sélectionnés
                         </h2>
-                        <span className="shrink-0 text-sm tabular-nums text-muted-foreground">
+                        <span className="shrink-0 text-base tabular-nums text-muted-foreground md:text-lg">
                           {String(activeIndex + 1).padStart(2, "0")} /{" "}
                           {String(projects.length).padStart(2, "0")}
                         </span>
@@ -103,19 +103,19 @@ export function ProjectsShowcase() {
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <span
-                          className="text-xs font-medium uppercase tracking-[0.15em]"
+                          className="text-sm font-medium uppercase tracking-[0.15em] md:text-[0.95rem]"
                           style={{ color: "var(--brand-emerald)" }}
                         >
                           {project.category}
                         </span>
-                        <span className="text-xs tabular-nums text-muted-foreground">
+                        <span className="text-sm tabular-nums text-muted-foreground md:text-[0.95rem]">
                           {project.year}
                         </span>
                       </div>
-                      <h3 className="text-xl font-light tracking-tight text-foreground md:text-2xl lg:text-3xl">
+                      <h3 className="text-2xl font-light tracking-tight text-foreground md:text-3xl lg:text-4xl">
                         {project.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">
+                      <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                         {project.description}
                       </p>
                     </div>

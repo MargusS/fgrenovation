@@ -122,10 +122,10 @@ export function WhyChooseUsStrip() {
               </div>
 
               <div className="min-w-0">
-                <p className="text-[clamp(2rem,4vw,2.35rem)] font-semibold leading-none tracking-[-0.04em] text-white">
+                <p className="text-[clamp(1.8rem,3.6vw,2.15rem)] font-semibold leading-none tracking-[-0.04em] text-white">
                   {item.value === "animated-years" ? <AnimatedYearsValue /> : item.value}
                 </p>
-                <p className="mt-2 text-[0.82rem] font-medium text-white/75 sm:text-[0.9rem]">
+                <p className="mt-2 text-[0.76rem] font-medium text-white/75 sm:text-[0.84rem]">
                   {item.label}
                 </p>
               </div>
