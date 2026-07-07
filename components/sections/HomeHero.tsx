@@ -91,8 +91,8 @@ export function HomeHero() {
 							variants={fadeInUp}
 							initial="hidden"
 							animate="visible"
-							className="text-[clamp(2.25rem,10vw,3rem)] font-medium uppercase leading-[1.05] tracking-tight text-foreground lg:text-6xl"
-							style={{ fontFamily: "var(--font-fraunces)" }}
+							className="text-[clamp(2.25rem,10vw,3rem)] font-bold uppercase leading-[1.05] tracking-tight text-foreground lg:text-6xl"
+							style={{ fontFamily: "var(--font-epilogue)" }}
 						>
 							Donnons vie
 							<br />
