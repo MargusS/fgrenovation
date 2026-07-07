@@ -21,12 +21,12 @@ export function ContactItem({
 }: ContactItemProps) {
   const content = (
     <div className="flex items-start gap-4">
-      <span className="mt-0.5 text-olive-600">{icon}</span>
+      <span className="mt-0.5 text-white">{icon}</span>
       <div className="space-y-1">
-        <span className="block text-xs font-medium uppercase tracking-[0.15em] text-stone-400">
+        <span className="block text-xs font-medium uppercase tracking-[0.15em] text-white/75">
           {label}
         </span>
-        <span className="block text-sm text-stone-100">{value}</span>
+        <span className="block text-sm text-white">{value}</span>
       </div>
     </div>
   );

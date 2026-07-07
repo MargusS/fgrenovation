@@ -1,5 +1,12 @@
 "use client";
 
+import OutlineFacebookIcon from "@iconify-react/ic/outline-facebook";
+import GeoLocationOutlineIcon from "@iconify-react/healthicons/geo-location-outline";
+import InstagramIcon from '@iconify-react/mdi/instagram';
+import LinkedinIcon from '@iconify-react/mdi/linkedin';
+import PhoneIcon from "@iconify-react/mdi-light/phone";
+import ClockIcon from "@iconify-react/mdi-light/clock";
+import MailOutlineRoundedIcon from '@iconify-react/material-symbols-light/mail-outline-rounded';
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -7,42 +14,25 @@ import { ContactItem } from "@/components/ui/ContactItem";
 import { company } from "@/data/company";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 
-const PhoneIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
-const MailIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
-);
-
-const LocationIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
-);
-
-const ClockIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 6v6l4 2" />
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-    <rect x="2" y="2" width="20" height="20" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="18" cy="6" r="1" fill="currentColor" />
-  </svg>
-);
-
 export function ContactSection() {
+  const socialLinks = [
+    {
+      href: company.social.facebook,
+      label: "Facebook",
+      icon: OutlineFacebookIcon,
+    },
+    {
+      href: company.social.instagram,
+      label: "Instagram",
+      icon: InstagramIcon,
+    },
+    {
+      href: company.social.linkedin,
+      label: "LinkedIn",
+      icon: LinkedinIcon,
+    },
+  ] as const;
+
   return (
     <Section
       id="contact"
@@ -60,13 +50,13 @@ export function ContactSection() {
               viewport={{ once: true, margin: "-100px" }}
               className="mb-10"
             >
-              <span className="mb-3 block text-xs font-medium uppercase tracking-[0.2em] text-stone-400">
+              <span className="mb-3 block text-xs font-medium uppercase tracking-[0.2em] text-white">
                 Contact
               </span>
-              <h2 className="text-2xl font-light tracking-tight text-stone-100 md:text-3xl lg:text-4xl text-balance">
+              <h2 className="text-2xl font-light tracking-tight text-white md:text-3xl lg:text-4xl text-balance">
                 Parlons de votre projet
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-stone-400">
+              <p className="mt-4 text-sm leading-relaxed text-white/90">
                 Vous avez un projet de rénovation ? Contactez-nous pour une première
                 discussion sans engagement. Nous intervenons dans tout le canton de Vaud.
               </p>
@@ -80,24 +70,24 @@ export function ContactSection() {
               className="space-y-6"
             >
               <ContactItem
-                icon={<PhoneIcon />}
+                icon={<PhoneIcon height="1.6em" />}
                 label="Téléphone"
                 value={company.contact.phone}
                 href={`tel:${company.contact.phone.replace(/\s/g, "")}`}
               />
               <ContactItem
-                icon={<MailIcon />}
+                icon={<MailOutlineRoundedIcon  height="1.6em" />}
                 label="Email"
                 value={company.contact.email}
                 href={`mailto:${company.contact.email}`}
               />
               <ContactItem
-                icon={<LocationIcon />}
+                icon={<GeoLocationOutlineIcon height="1.6em" />}
                 label="Adresse"
                 value={`${company.location.address}, ${company.location.city}`}
               />
               <ContactItem
-                icon={<ClockIcon />}
+                icon={<ClockIcon height="1.6em" />}
                 label="Horaires"
                 value={company.hours.weekdays}
               />
@@ -112,16 +102,18 @@ export function ContactSection() {
               transition={{ delay: 0.3 }}
               className="mt-10 flex gap-4"
             >
-              <a
-                href={company.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center border border-stone-700 text-stone-400 transition-colors hover:border-olive-600 hover:text-olive-500"
-                aria-label="Instagram"
-                color="currentColor"
-              >
-                <InstagramIcon />
-              </a>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center text-white transition-opacity hover:opacity-75"
+                  aria-label={link.label}
+                >
+                  <link.icon height="1.5em" />
+                </a>
+              ))}
             </motion.div>
           </div>
 
