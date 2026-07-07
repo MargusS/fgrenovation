@@ -36,7 +36,6 @@ export function ContactSection() {
   return (
     <Section
       id="contact"
-      maxHeight="h-auto md:min-h-[min(100vh,1130px)]"
       className="relative bg-[#2B4537] lg:py-16"
     >
       <Container>
