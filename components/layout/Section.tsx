@@ -18,7 +18,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-20 md:py-28 lg:py-0 section-img-fit",
+        "py-20 lg:py-0 section-img-fit",
         // maxHClass,
         background === "default" && "bg-background",
         background === "muted" && "bg-muted",

@@ -66,9 +66,9 @@ function AnimatedYearsValue() {
       ([entry]) => {
         if (entry.isIntersecting) {
           if (prefersReducedMotion) {
-            node.textContent = "15+";
+            node.textContent = "25+";
           } else {
-            const counter = new CountUp(node, 15, {
+            const counter = new CountUp(node, 25, {
               duration: 4.5,
               suffix: "+",
               useGrouping: false,
@@ -77,7 +77,7 @@ function AnimatedYearsValue() {
             if (!counter.error) {
               counter.start();
             } else {
-              node.textContent = "15+";
+              node.textContent = "25+";
             }
           }
 
@@ -116,7 +116,7 @@ export function WhyChooseUsStrip() {
       <div className="mx-auto w-full max-w-[1400px] px-5 md:px-8">
         <div className="grid grid-cols-1 divide-y divide-white/10 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
           {items.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 px-4 py-6 sm:px-6 lg:min-h-[142px] lg:px-8 xl:px-10">
+            <div key={item.id} className="flex items-center justify-center gap-4 px-4 py-6 text-center sm:justify-start sm:px-6 sm:text-left lg:min-h-[142px] lg:px-8 xl:px-10">
               <div className="flex h-13 w-13 shrink-0 items-center justify-center text-[#d2b58b] sm:h-15 sm:w-15">
                 <item.icon className="h-9 w-9 sm:h-10 sm:w-10" height="1em" />
               </div>
