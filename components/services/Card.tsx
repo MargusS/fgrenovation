@@ -28,6 +28,16 @@ interface CardProps {
   index: number;
 }
 
+// Extraemos las clases a un array para que sea mucho más legible
+const cardStyles = [
+  "mx-auto flex w-full max-w-[320px] items-center justify-center",
+  "min-h-[180px] sm:min-h-[200px]",
+  "rounded-2xl border border-black/5 bg-white",
+  "p-6 sm:p-8",
+  "shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-shadow duration-300",
+  "hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)]"
+].join(" ");
+
 export function Card({ service, index }: CardProps) {
   const Icon =
     serviceIcons[service.icon as keyof typeof serviceIcons] ??
@@ -40,14 +50,14 @@ export function Card({ service, index }: CardProps) {
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: index * 0.06 }}
-      className="mx-auto flex min-h-[220px] w-[80%] max-w-[360px] items-center justify-center rounded-[28px] border border-black/8 bg-white p-5 shadow-[0_12px_30px_rgba(0,0,0,0.04)] min-[640px]:min-h-[230px] min-[640px]:w-full min-[640px]:max-w-[340px] min-[640px]:p-5 min-[1013px]:min-h-[250px] min-[1013px]:max-w-[420px] min-[1013px]:p-6 min-[1533px]:min-h-[280px] min-[1533px]:max-w-[320px]"
+      className={cardStyles}
     >
-      <div className="flex flex-col items-center justify-center gap-6 text-center">
+      <div className="flex flex-col items-center justify-center gap-4 text-center sm:gap-5">
         <div className="flex items-center justify-center text-brand-ink">
-          <Icon className="h-10 w-10 text-brand-fir sm:h-11 sm:w-11" height="1em" />
+          <Icon className="h-9 w-9 text-brand-fir sm:h-10 sm:w-10" height="1em" />
         </div>
 
-        <h3 className="max-w-[12ch] text-balance text-[1.45rem] font-semibold leading-[1.15] tracking-tight text-brand-ink sm:text-[1.65rem]">
+        <h3 className="max-w-[14ch] text-balance text-[1.25rem] font-semibold leading-[1.2] tracking-tight text-brand-ink sm:text-[1.35rem]">
           {service.title}
         </h3>
       </div>
