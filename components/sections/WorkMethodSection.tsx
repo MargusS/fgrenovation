@@ -20,7 +20,6 @@ const stepIcons = {
   tick: TickCircleOutlineIcon,
 } as const;
 
-// Tamaños de icono mucho más sutiles y estandarizados
 const iconBaseSize = "h-10 w-10 sm:h-12 sm:w-12 text-brand-fir stroke-[1.4] overflow-visible";
 
 export function WorkMethodSection() {
