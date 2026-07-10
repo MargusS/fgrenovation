@@ -8,8 +8,19 @@ import { staggerContainer, fadeInUp } from "@/lib/motion";
 
 export function ServicesGrid() {
   return (
-    <div className="w-full border-y border-black/5 bg-transparent px-6 py-16 sm:px-6 sm:py-24 lg:px-12 lg:py-32 xl:px-20">
-      <Section id="services" className="mx-auto max-w-7xl scroll-mt-24 px-0 py-0 text-brand-ink lg:scroll-mt-28">
+    <div className="relative w-full border-y border-black/5 bg-transparent px-6 py-16 sm:px-6 sm:py-24 lg:px-12 lg:py-32 xl:px-20 overflow-hidden">
+
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/media/textures-bg.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center opacity-70"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-white/40" />
+      </div>
+
+      <Section id="services" className="relative z-10 mx-auto max-w-7xl scroll-mt-24 px-0 py-0 text-brand-ink lg:scroll-mt-28 bg-transparent">
 
         <motion.div
           variants={fadeInUp}
@@ -21,7 +32,7 @@ export function ServicesGrid() {
           <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl lg:text-5xl">
             Nos Domaines d'Expertise
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/70 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/80 sm:text-lg">
             De la conception aux finitions, nous vous accompagnons à chaque étape de votre rénovation avec exigence et savoir-faire.
           </p>
         </motion.div>
