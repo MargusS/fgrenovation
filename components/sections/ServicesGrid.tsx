@@ -1,65 +1,55 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Card } from "@/components/services/Card";
 import { Section } from "@/components/layout/Section";
-import { ServiceItem } from "@/components/ui/ServiceItem";
 import { services } from "@/data/services";
-import { staggerContainer } from "@/lib/motion";
+import { staggerContainer, fadeInUp } from "@/lib/motion";
 
 export function ServicesGrid() {
-	return (
-		<Section
-			id="services"
-			className="relative !py-0 text-brand-ink"
-		>
-			<div className="h-auto md:h-full grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
+  return (
+    <div className="relative w-full border-y border-black/5 bg-transparent px-6 py-16 sm:px-6 sm:py-24 lg:px-12 lg:py-32 xl:px-20 overflow-hidden">
 
-				<motion.div
-					variants={staggerContainer}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true }}
-					className="h-auto md:h-full grid grid-cols-1 bg-brand-fir md:grid-cols-2"
-				>
-					{services.slice(0, 4).map((service, index) => (
-						<div
-							key={service.id}
-							className={[
-								"flex px-5 py-12 md:px-6 md:py-12 xl:px-8 xl:py-14",
-								"border-white/80",
-								"border-b-[1.5px]",
-								"md:border-r-[1.5px] md:[&:nth-child(2n)]:border-r-0",
-								index >= 2 ? "md:border-b-0" : "",
-							].join(" ")}
-						>
-							<ServiceItem service={service} index={index} className="h-auto w-full" />
-						</div>
-					))}
-				</motion.div>
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/media/textures-bg.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center opacity-70"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-white/40" />
+      </div>
 
-				<div className="h-auto md:h-full order-first lg:order-last flex bg-brand-bg px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-12 xl:px-14">
-					<div className="flex w-full items-center">
-						<div className="w-full space-y-5">
-							<span className="block text-[0.72rem] font-medium uppercase tracking-[0.24em] text-brand-ink-muted">
-								Savoir-faire
-							</span>
+      <Section id="services" className="relative z-10 mx-auto max-w-7xl scroll-mt-24 px-0 py-0 text-brand-ink lg:scroll-mt-28 bg-transparent">
 
-							<h2
-								className="font-display text-3xl leading-[0.92] tracking-tight text-brand-ink md:text-4xl xl:text-[3.25rem]"
-								style={{ fontFamily: "var(--font-fraunces)" }}
-							>
-								Nos domaines d&apos;intervention
-							</h2>
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-12 text-center sm:mb-16 lg:mb-20"
+        >
+          <h2 className="text-3xl font-bold tracking-tight text-brand-ink sm:text-4xl lg:text-5xl">
+            Nos Domaines d'Expertise
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/80 sm:text-lg">
+            De la conception aux finitions, nous vous accompagnons à chaque étape de votre rénovation avec exigence et savoir-faire.
+          </p>
+        </motion.div>
 
-							<p className="pt-2 text-sm leading-relaxed text-brand-ink-muted md:text-[1rem]">
-								Chaque projet est unique. Nous nous adaptons à vos besoins spécifiques
-								et proposons des solutions sur mesure, que ce soit pour une rénovation
-								partielle ou un chantier complet.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</Section>
-	);
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4 lg:gap-6 xl:gap-8"
+        >
+          {services.map((service, index) => (
+            <Card key={service.id} service={service} index={index} />
+          ))}
+        </motion.div>
+
+      </Section>
+    </div>
+  );
 }

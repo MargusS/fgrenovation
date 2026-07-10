@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter,  Epilogue } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -9,12 +9,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const fraunces = Fraunces({
+const epilogue = Epilogue({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-fraunces",
-  axes: ["SOFT", "WONK"],
-  style: ["normal", "italic"],
+  variable: "--font-epilogue",
 });
 
 export const metadata: Metadata = {
@@ -73,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${fraunces.variable} bg-background`}>
+    <html lang="fr" className={`${inter.variable} ${epilogue.variable} bg-background`}>
       <body className="font-sans antialiased">
         <main className="w-full min-h-screen">
           <div className="w-full min-h-screen max-w-[2900px] mx-auto">

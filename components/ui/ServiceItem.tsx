@@ -98,14 +98,14 @@ export function ServiceItem({ service, index, className }: ServiceItemProps) {
           </motion.h3>
         </div>
 
-        <p className="text-[0.92rem] leading-relaxed text-brand-surface/78 xl:text-[0.96rem]">
+        <p className="text-[0.92rem] leading-relaxed text-justify text-brand-surface/78 xl:text-[0.96rem]">
           {service.description}
         </p>
 
-        <ul className="flex flex-wrap gap-2.5 pt-1">
+        <ul className="grid grid-cols-1 gap-2.5 pt-1 sm:grid-cols-2">
           {service.features.map((feature) => (
             <li key={feature}>
-              <span className="inline-flex items-center rounded-full border border-white/14 bg-white/8 px-3 py-1.5 text-[0.76rem] leading-none text-white/78 backdrop-blur-sm md:text-[0.8rem]">
+              <span className="flex h-10 w-full items-center rounded-full border border-white/14 bg-white/8 px-3 py-1.5 text-left text-[0.76rem] leading-none text-white/78 backdrop-blur-sm md:text-[0.8rem]">
                 {feature}
               </span>
             </li>

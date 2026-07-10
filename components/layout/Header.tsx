@@ -10,7 +10,7 @@ const navItems = [
 	{ label: "Accueil", href: "#accueil" },
 	{ label: "Nos Services", href: "#services" },
 	{ label: "Réalisations", href: "#projets" },
-	{ label: "À Propos", href: "#bureau" },
+	{ label: "Méthode", href: "#methode" },
 	{ label: "Contact", href: "#contact" },
 ];
 
@@ -177,7 +177,7 @@ export function Header() {
 									href="#contact"
 									onClick={(e) => handleNavClick(e, "#contact")}
 									className={cn(
-										"inline-flex items-center rounded-full bg-primary font-semibold tracking-wide text-primary-foreground transition-opacity hover:opacity-80",
+										"inline-flex items-center rounded-full bg-[#2B4537] font-semibold tracking-wide text-primary-foreground transition-opacity hover:opacity-80",
 										shouldShowHeader ? "px-5 py-2 text-sm" : "px-4 py-1.5 text-[0.82rem]"
 									)}
 								>

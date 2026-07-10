@@ -28,8 +28,8 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           className="h-full w-full"
         >
           <img
-            src={project.image}
-            alt={project.title}
+            src={project.imageAfter}
+            alt={`${project.title} après`}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </motion.div>

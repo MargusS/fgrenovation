@@ -17,7 +17,9 @@ export const company = {
     website: "www.fg-renovation.ch",
   },
   social: {
+    facebook: "https://www.facebook.com/",
     instagram: "https://www.instagram.com/fgrenovation.ch/",
+    linkedin: "https://www.linkedin.com/",
   },
   hours: {
     weekdays: "Lundi – Vendredi : 07h00 – 17h30",
