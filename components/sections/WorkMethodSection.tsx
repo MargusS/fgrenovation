@@ -193,7 +193,7 @@ export function WorkMethodSection() {
       <div ref={sectionRef}>
         <Section
           id="methode"
-          className="mx-auto max-w-7xl scroll-mt-24 px-6 text-brand-ink lg:scroll-mt-28 lg:px-12 xl:px-20"
+          className="mx-auto scroll-mt-24 px-6 text-brand-ink lg:scroll-mt-28 lg:px-12 xl:px-20"
         >
           <div className="flex flex-col gap-12 lg:gap-20">
             <motion.div
@@ -204,7 +204,7 @@ export function WorkMethodSection() {
               className="flex w-full justify-center text-center lg:justify-start lg:text-left"
             >
               <h2
-                className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground lg:text-6xl"
+                className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground lg:text-5xl"
                 style={{ fontFamily: "var(--font-epilogue)" }}
               >
                 Notre méthode
