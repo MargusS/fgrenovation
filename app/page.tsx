@@ -5,6 +5,7 @@ import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { WhyChooseUsStrip } from "@/components/sections/WhyChooseUsStrip";
 import { WorkMethodSection } from "@/components/sections/WorkMethodSection";
+import { FloatingDevisButton } from "@/components/ui/FloatingDevisButton";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <ProjectsShowcase />
         <WorkMethodSection />
         <ContactSection />
+		<FloatingDevisButton />
       </main>
     </>
   );
