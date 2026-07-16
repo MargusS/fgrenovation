@@ -34,12 +34,12 @@ export function ContactSection() {
 	] as const;
 
 	return (
-		<div className="w-full bg-brand-fir py-6 lg:py-20">
+		<div className="w-full bg-brand-fir pt-6 pb-2 lg:pt-20 lg:pb-10">
 			<Section
 				id="contact"
 				className="mx-auto bg-transparent scroll-mt-24 px-6 text-brand-ink lg:scroll-mt-28 lg:px-12 xl:px-20"
 			>
-				<div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-0">
+				<div className="grid gap-6 lg:grid-cols-2 lg:gap-12 pt-0">
 					<div>
 						<motion.div
 							variants={fadeInUp}
@@ -51,7 +51,7 @@ export function ContactSection() {
 							<span className="mb-3 block text-xs font-medium uppercase tracking-[0.2em] text-white">
 								Contact
 							</span>
-							<h2 className="text-2=3xl font-bold uppercase leading-[1.1] tracking-tight text-background lg:text-4xl"
+							<h2 className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-background lg:text-4xl"
 								style={{ fontFamily: "var(--font-epilogue)" }}>
 								Parlons de votre projet
 							</h2>
@@ -98,7 +98,7 @@ export function ContactSection() {
 							whileInView="visible"
 							viewport={{ once: true }}
 							transition={{ delay: 0.3 }}
-							className="mt-10 flex gap-4"
+							className="mt-5 flex justify-end gap-4"
 						>
 							{socialLinks.map((link) => (
 								<a
@@ -109,7 +109,7 @@ export function ContactSection() {
 									className="flex h-10 w-10 items-center justify-center text-white transition-opacity hover:opacity-75"
 									aria-label={link.label}
 								>
-									<link.icon height="1.5em" />
+									<link.icon height="2em" />
 								</a>
 							))}
 						</motion.div>

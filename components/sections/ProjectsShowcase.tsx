@@ -52,7 +52,7 @@ export function ProjectsShowcase() {
 	}, [startAutoplay]);
 
 	return (
-		<Section id="projets" className="py-0 md:py-0 xl:py-0 h-[min(100vh,1130px)] overflow-hidden">
+		<Section id="projets" className="py-12 md:py-0 xl:py-0 h-[min(100vh,1130px)] overflow-hidden">
 			<div ref={containerRef} className="min-h-[300vh]">
 
 				<div
@@ -72,7 +72,7 @@ export function ProjectsShowcase() {
 									<span className="block text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-[0.95rem]">
 										Réalisations
 									</span>
-									<div className="flex flex-wrap-reverse items-end justify-between gap-6">
+									<div className="flex flex-wrap items-end justify-between gap-6">
 										<h2 className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground xl:text-5xl"
 											style={{ fontFamily: "var(--font-epilogue)" }}>
 											Projets sélectionnés
@@ -195,7 +195,7 @@ export function ProjectsShowcase() {
 						</div>
 
 						<div
-							className="flex shrink-0 items-center justify-center gap-3 py-4 xl:hidden relative z-20"
+							className="flex shrink-0 items-center justify-center gap-3 py-12 xl:hidden relative z-20"
 							onClick={(e) => e.stopPropagation()}
 						>
 							{projects.map((_, indicatorIndex) => (
