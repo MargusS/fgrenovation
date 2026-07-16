@@ -125,11 +125,11 @@ export function HomeHero() {
 			id="accueil"
 			className="relative py-0 h-[min(100vh,1130px)] overflow-hidden bg-background"
 		>
-			<div className="grid h-full w-full grid-cols-1 grid-rows-[70%_30%] lg:grid-cols-[50%_50%] lg:grid-rows-1">
+			<div className="grid h-full w-full grid-cols-1 grid-rows-[65%_45%] lg:grid-cols-[50%_50%] lg:grid-rows-1">
 
 				<motion.div
 					style={{ opacity: textOpacity, y: textY }}
-					className="relative z-10 flex h-full flex-col items-center justify-center px-6 pb-0 pt-10 text-center lg:items-start lg:px-16 lg:pb-20 lg:pt-50 lg:text-left xl:px-20"
+					className="relative z-10 flex h-full flex-col items-center justify-center px-6 pb-0 pt-20 text-center lg:items-start lg:px-16 lg:pb-20 lg:pt-50 lg:text-left xl:px-20"
 				>
 					<div className="w-full space-y-1 lg:max-w-xl">
 						<motion.h1
@@ -162,7 +162,7 @@ export function HomeHero() {
 							initial="hidden"
 							animate="visible"
 							transition={{ delay: 0.4 }}
-							className="flex flex-wrap items-center justify-center gap-3 pt-12 lg:justify-start"
+							className="flex flex-wrap items-center justify-center gap-3 pt-6 lg:justify-start"
 						>
 							<a
 								href="#services"
@@ -187,7 +187,7 @@ export function HomeHero() {
 							transition={{ delay: 0.6 }}
 							className="pt-6"
 						>
-							<ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-x-4 lg:flex lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
+							<ul className="grid grid-cols-1 gap-2 sm:justify-items-center sm:gap-x-4 lg:flex lg:flex-wrap lg:items-start lg:gap-x-5 lg:gap-y-2">
 								{trustBadges.map((badge) => (
 									<li key={badge.label} className="flex items-center justify-center gap-2 text-muted-foreground sm:justify-start">
 										<span className="shrink-0 text-foreground/60">{badge.icon}</span>

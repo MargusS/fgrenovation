@@ -52,7 +52,7 @@ export function WorkMethodSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-4"
+            className="grid grid-cols-1 gap-10 sm:justify-items-center lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-4"
           >
             {workMethodSteps.map((step, index) => {
               const Icon = stepIcons[step.icon as keyof typeof stepIcons] ?? BaselinePhoneIcon;
@@ -61,7 +61,7 @@ export function WorkMethodSection() {
                 <motion.div
                   key={step.id}
                   variants={fadeInUp}
-                  className="flex flex-1 flex-col items-center text-center sm:text-left sm:items-start lg:items-center lg:text-center"
+                  className="flex flex-1 flex-col items-center text-center sm:text-left sm:items-center lg:items-center lg:text-center"
                 >
                   <div className="relative flex flex-col items-center sm:items-start lg:items-center">
 
