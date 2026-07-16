@@ -52,28 +52,28 @@ export function ProjectsShowcase() {
 	}, [startAutoplay]);
 
 	return (
-		<Section id="projets" className="py-0 md:py-0 lg:py-0 h-[min(100vh,1130px)] overflow-hidden">
+		<Section id="projets" className="py-0 md:py-0 xl:py-0 h-[min(100vh,1130px)] overflow-hidden">
 			<div ref={containerRef} className="min-h-[300vh]">
 
 				<div
-					className="sticky overflow-hidden grid grid-rows-[1fr_1fr] lg:grid-cols-[40%_60%] lg:grid-rows-1"
+					className="sticky overflow-hidden grid grid-rows-[1fr_1fr] xl:grid-cols-[40%_60%] xl:grid-rows-1"
 					style={{
 						top: HEADER_OFFSET,
 						height: `min(calc(100vh - ${HEADER_OFFSET}px), 1130px)`,
 					}}
 				>
 
-					<div className="relative flex h-full items-center px-6 pb-8 pt-8 md:px-10 lg:px-16 lg:pb-20 lg:pt-12 bg-background z-20">
+					<div className="relative flex h-full items-center px-6 pb-8 pt-8 md:px-10 xl:px-16 xl:pb-20 xl:pt-12 bg-background z-20">
 						<div className="flex w-full h-full flex-col justify-between">
 
-							<div className="flex flex-col space-y-10 md:space-y-20 mt-auto lg:mt-0">
+							<div className="flex flex-col space-y-10 md:space-y-20 mt-auto xl:mt-0">
 
 								<div className="space-y-3">
 									<span className="block text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-[0.95rem]">
 										Réalisations
 									</span>
-									<div className="flex items-end justify-between gap-6">
-										<h2 className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground lg:text-5xl"
+									<div className="flex flex-wrap-reverse items-end justify-between gap-6">
+										<h2 className="text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground xl:text-5xl"
 											style={{ fontFamily: "var(--font-epilogue)" }}>
 											Projets sélectionnés
 										</h2>
@@ -109,10 +109,10 @@ export function ProjectsShowcase() {
 													{project.year}
 												</span>
 											</div>
-											<h3 className="text-2xl font-light tracking-tight text-foreground md:text-3xl lg:text-4xl">
+											<h3 className="text-2xl font-light tracking-tight text-foreground md:text-3xl xl:text-4xl">
 												{project.title}
 											</h3>
-											<p className="max-w-[34ch] text-justify text-base leading-relaxed text-muted-foreground hyphens-auto md:max-w-[36ch] md:text-lg">
+											<p className="max-w-[34ch] text-justify text-base leading-relaxed text-muted-foreground hyphens-auto md:max-w-[100ch] md:text-lg">
 												{project.description}
 											</p>
 										</motion.div>
@@ -121,7 +121,7 @@ export function ProjectsShowcase() {
 
 							</div>
 
-							<div className="mt-10 hidden items-center justify-center gap-3 lg:flex">
+							<div className="mt-10 hidden items-center justify-center gap-3 xl:flex">
 								{projects.map((_, indicatorIndex) => (
 									<button
 										key={`indicator-desk-${indicatorIndex}`}
@@ -195,7 +195,7 @@ export function ProjectsShowcase() {
 						</div>
 
 						<div
-							className="flex shrink-0 items-center justify-center gap-3 py-4 lg:hidden relative z-20"
+							className="flex shrink-0 items-center justify-center gap-3 py-4 xl:hidden relative z-20"
 							onClick={(e) => e.stopPropagation()}
 						>
 							{projects.map((_, indicatorIndex) => (

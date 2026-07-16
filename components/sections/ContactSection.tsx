@@ -52,7 +52,8 @@ export function ContactSection() {
               <span className="mb-3 block text-xs font-medium uppercase tracking-[0.2em] text-white">
                 Contact
               </span>
-              <h2 className="text-2xl font-light tracking-tight text-white md:text-3xl lg:text-4xl text-balance">
+              <h2 className="text-2=3xl font-bold uppercase leading-[1.1] tracking-tight text-background lg:text-4xl"
+                style={{ fontFamily: "var(--font-epilogue)" }}>
                 Parlons de votre projet
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-white/90">
