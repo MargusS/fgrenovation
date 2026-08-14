@@ -8,6 +8,10 @@ import { projects } from "@/data/projects";
 const HEADER_OFFSET = 0;
 const AUTOPLAY_INTERVAL = 4000;
 
+function isVideoAsset(src: string) {
+	return /\.(mp4|webm|mov)$/i.test(src);
+}
+
 export function ProjectsShowcase() {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -105,9 +109,11 @@ export function ProjectsShowcase() {
 												>
 													{project.category}
 												</span>
-												<span className="text-sm tabular-nums text-muted-foreground md:text-[0.95rem]">
-													{project.year}
-												</span>
+												{project.year ? (
+													<span className="text-sm tabular-nums text-muted-foreground md:text-[0.95rem]">
+														{project.year}
+													</span>
+												) : null}
 											</div>
 											<h3 className="text-2xl font-light tracking-tight text-foreground md:text-3xl xl:text-4xl">
 												{project.title}
@@ -163,13 +169,26 @@ export function ProjectsShowcase() {
 										initial={{ scale: 1.03 }}
 										animate={{ scale: index === activeIndex ? 1 : 1.03 }}
 										transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-										className="relative overflow-hidden"
-									>
-										<img
-											src={project.imageBefore}
-											alt={`${project.title} avant`}
-											className="h-full w-full object-cover object-center"
-										/>
+											className="relative overflow-hidden"
+										>
+										{isVideoAsset(project.imageBefore) ? (
+											<video
+												src={project.imageBefore}
+												className="h-full w-full object-cover object-center"
+												autoPlay
+												muted
+												loop
+												playsInline
+												preload="metadata"
+												aria-label={`${project.title} avant`}
+											/>
+										) : (
+											<img
+												src={project.imageBefore}
+												alt={`${project.title} avant`}
+												className="h-full w-full object-cover object-center"
+											/>
+										)}
 										<span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">
 											Avant
 										</span>
@@ -181,11 +200,24 @@ export function ProjectsShowcase() {
 										transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
 										className="relative overflow-hidden"
 									>
-										<img
-											src={project.imageAfter}
-											alt={`${project.title} après`}
-											className="h-full w-full object-cover object-center"
-										/>
+										{isVideoAsset(project.imageAfter) ? (
+											<video
+												src={project.imageAfter}
+												className="h-full w-full object-cover object-center"
+												autoPlay
+												muted
+												loop
+												playsInline
+												preload="metadata"
+												aria-label={`${project.title} après`}
+											/>
+										) : (
+											<img
+												src={project.imageAfter}
+												alt={`${project.title} après`}
+												className="h-full w-full object-cover object-center"
+											/>
+										)}
 										<span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">
 											Après
 										</span>

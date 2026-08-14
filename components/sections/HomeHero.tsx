@@ -7,11 +7,9 @@ import { heroSubtitles } from "@/data/company";
 import { fadeInUp, fadeIn } from "@/lib/motion";
 import { PaintWord } from "@/components/ui/PaintWord";
 
-// 1. Añade aquí las rutas de tus imágenes cuando las subas a la carpeta /public
 const HERO_IMAGES = [
-	"/media/hero1.png",
-	"/media/hero2.jpg",
-	"/media/hero3.jpg",
+	"/projects/4/before.JPG",
+	"/projects/4/after.png",
 ];
 
 const trustBadges = [

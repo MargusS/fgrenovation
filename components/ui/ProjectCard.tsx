@@ -10,6 +10,10 @@ interface ProjectCardProps {
   className?: string;
 }
 
+function isVideoAsset(src: string) {
+  return /\.(mp4|webm|mov)$/i.test(src);
+}
+
 export function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <motion.article
@@ -27,11 +31,24 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           viewport={{ once: true }}
           className="h-full w-full"
         >
-          <img
-            src={project.imageAfter}
-            alt={`${project.title} après`}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          />
+          {isVideoAsset(project.imageAfter) ? (
+            <video
+              src={project.imageAfter}
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`${project.title} après`}
+            />
+          ) : (
+            <img
+              src={project.imageAfter}
+              alt={`${project.title} après`}
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          )}
         </motion.div>
       </div>
       <div className="space-y-3">
@@ -39,9 +56,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           <span className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
             {project.category}
           </span>
-          <span className="text-xs tabular-nums text-muted-foreground">
-            {project.year}
-          </span>
+          {project.year ? (
+            <span className="text-xs tabular-nums text-muted-foreground">
+              {project.year}
+            </span>
+          ) : null}
         </div>
         <h3 className="text-xl font-light tracking-tight text-foreground md:text-2xl">
           {project.title}
