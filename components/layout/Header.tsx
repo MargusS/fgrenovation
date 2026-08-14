@@ -24,6 +24,7 @@ export function Header() {
 
 	const prefersReducedMotion = useReducedMotion();
 	const lastScrollY = useRef(0);
+	const idleHideTimeoutRef = useRef<number | null>(null);
 
 	const handleNavClick = (
 		e: React.MouseEvent<HTMLAnchorElement>,
@@ -35,24 +36,43 @@ export function Header() {
 	};
 
 	useEffect(() => {
+		const clearIdleHideTimeout = () => {
+			if (idleHideTimeoutRef.current !== null) {
+				window.clearTimeout(idleHideTimeoutRef.current);
+				idleHideTimeoutRef.current = null;
+			}
+		};
+
+		const hideWhenIdle = () => {
+			clearIdleHideTimeout();
+			idleHideTimeoutRef.current = window.setTimeout(() => {
+				setIsHeaderVisible(false);
+				setIsHoverReveal(false);
+			}, 3000);
+		};
+
 		const onScroll = () => {
 			const currentY = window.scrollY;
 			const isScrollingDown = currentY > lastScrollY.current;
 			const isNearTop = currentY < HEADER_HIDE_OFFSET;
 
 			if (isMobileMenuOpen) {
+				clearIdleHideTimeout();
 				setIsHeaderVisible(true);
 				lastScrollY.current = currentY;
 				return;
 			}
 
 			if (isNearTop) {
+				clearIdleHideTimeout();
 				setIsHeaderVisible(true);
 			} else if (isScrollingDown) {
+				clearIdleHideTimeout();
 				setIsHeaderVisible(false);
 				setIsHoverReveal(false);
 			} else {
 				setIsHeaderVisible(true);
+				hideWhenIdle();
 			}
 
 			lastScrollY.current = currentY;
@@ -63,6 +83,7 @@ export function Header() {
 
 		return () => {
 			window.removeEventListener("scroll", onScroll);
+			clearIdleHideTimeout();
 		};
 	}, [isMobileMenuOpen]);
 
