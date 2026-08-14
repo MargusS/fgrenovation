@@ -24,6 +24,7 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         width={40}
         height={40}
         priority
+        style={{ width: "auto" }}
         className="block h-10 w-auto object-contain lg:hidden"
       />
 
@@ -33,6 +34,7 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         width={140}
         height={40}
         priority
+        style={{ width: "auto" }}
         className="hidden h-14 w-auto object-contain md:h-18 lg:block"
       />
     </motion.div>
