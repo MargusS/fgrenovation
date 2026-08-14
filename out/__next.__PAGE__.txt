@@ -1,0 +1,14 @@
+1:"$Sreact.fragment"
+2:I[93983,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"Header"]
+3:I[7885,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"HomeHero"]
+4:I[84689,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"WhyChooseUsStrip"]
+5:I[1893,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"ServicesGrid"]
+6:I[99787,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"ProjectsShowcase"]
+7:I[75352,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"WorkMethodSection"]
+8:I[68050,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"ContactSection"]
+9:I[23337,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/0.v.a9ifpzgv6.js"],"FloatingDevisButton"]
+a:I[97367,["/_next/static/chunks/0ya5kixflpvgt.js","/_next/static/chunks/0d3tkj33oycf2.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+:HL["/_next/static/chunks/0o1in.1~i-y-r.css","style"]
+0:{"rsc":["$","$1","c",{"children":[[["$","$L2",null,{}],["$","main",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0o1in.1~i-y-r.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0.v.a9ifpzgv6.js","async":true}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Smj0DmP3W-8-jDZux0-1h"}
+c:null
