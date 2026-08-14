@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import {
   motion,
-  useScroll,
+  animate,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
   useSpring,
   useTransform,
   MotionValue,
@@ -175,18 +178,32 @@ function StepItem({ step, index, totalSteps, smoothProgress }: StepItemProps) {
 
 export function WorkMethodSection() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 80%", "end 60%"],
-    layoutEffect: false,
+  const isInView = useInView(sectionRef, {
+    amount: "some",
+    margin: "-10% 0px -10% 0px",
   });
-
-  const smoothProgress = useSpring(scrollYProgress, {
+  const prefersReducedMotion = useReducedMotion();
+  const progress = useMotionValue(0);
+  const smoothProgress = useSpring(progress, {
     stiffness: 80,
     damping: 24,
     mass: 0.5,
   });
+
+  useEffect(() => {
+    if (!isInView) {
+      progress.jump(0);
+      smoothProgress.jump(0);
+      return;
+    }
+
+    const controls = animate(progress, 1, {
+      duration: prefersReducedMotion ? 0 : 2.4,
+      ease: [0.22, 1, 0.36, 1],
+    });
+
+    return () => controls.stop();
+  }, [isInView, prefersReducedMotion, progress, smoothProgress]);
 
   return (
     <div className="w-full bg-background py-16 sm:py-24 lg:py-32">
