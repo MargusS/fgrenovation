@@ -84,14 +84,28 @@ function StepItem({ step, index, totalSteps, smoothProgress }: StepItemProps) {
           className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border sm:h-28 sm:w-28"
         >
           <motion.div
-            style={{
-              scaleX: fillScale,
-              transformOrigin: "left center",
-              background:
-                "linear-gradient(135deg, color-mix(in oklab, var(--brand-fir) 18%, white), color-mix(in oklab, var(--brand-fir) 10%, white))",
-            }}
-            className="absolute inset-0 rounded-full"
-          />
+            className="absolute inset-0 overflow-hidden rounded-full"
+          >
+            <motion.div
+              style={{
+                scaleY: fillScale,
+                transformOrigin: "top center",
+                background:
+                  "linear-gradient(135deg, color-mix(in oklab, var(--brand-fir) 18%, white), color-mix(in oklab, var(--brand-fir) 10%, white))",
+              }}
+              className="absolute inset-0 rounded-full lg:hidden"
+            />
+
+            <motion.div
+              style={{
+                scaleX: fillScale,
+                transformOrigin: "left center",
+                background:
+                  "linear-gradient(135deg, color-mix(in oklab, var(--brand-fir) 18%, white), color-mix(in oklab, var(--brand-fir) 10%, white))",
+              }}
+              className="absolute inset-0 hidden rounded-full lg:block"
+            />
+          </motion.div>
 
           <motion.div
             style={{
