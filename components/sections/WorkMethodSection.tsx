@@ -10,6 +10,7 @@ import {
   useReducedMotion,
   useSpring,
   useTransform,
+  MotionValue,
 } from "framer-motion";
 import { Building20Regular as Building20RegularIcon } from "@fluentui/react-icons";
 import BaselinePhoneIcon from "@iconify-react/ic/baseline-phone";
@@ -32,38 +33,29 @@ const stepIcons = {
 const iconBaseSize =
   "h-10 w-10 sm:h-12 sm:w-12 text-current stroke-[1.45] overflow-visible";
 
+function clamp(value: number, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value));
+}
+
 type StepItemProps = {
   step: (typeof workMethodSteps)[number];
   index: number;
   totalSteps: number;
+  smoothProgress: MotionValue<number>;
 };
 
-function StepItem({ step, index, totalSteps }: StepItemProps) {
-  const itemRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(itemRef, {
-    amount: 0.55,
-    margin: "-8% 0px -8% 0px",
-  });
-  const prefersReducedMotion = useReducedMotion();
-  const progress = useMotionValue(0);
+function StepItem({ step, index, totalSteps, smoothProgress }: StepItemProps) {
   const Icon =
     stepIcons[step.icon as keyof typeof stepIcons] ?? BaselinePhoneIcon;
 
-  useEffect(() => {
-    if (!isInView) {
-      progress.jump(0);
-      return;
-    }
+  const stepStart = index / totalSteps;
+  const stepEnd = (index + 1) / totalSteps;
 
-    const controls = animate(progress, 1, {
-      duration: prefersReducedMotion ? 0 : 0.7,
-      ease: [0.22, 1, 0.36, 1],
-    });
+  const rawStepProgress = useTransform(smoothProgress, (value) => {
+    return clamp((value - stepStart) / (stepEnd - stepStart));
+  });
 
-    return () => controls.stop();
-  }, [isInView, prefersReducedMotion, progress]);
-
-  const fillProgress = useSpring(progress, {
+  const fillProgress = useSpring(rawStepProgress, {
     stiffness: 90,
     damping: 24,
     mass: 0.5,
@@ -81,9 +73,9 @@ function StepItem({ step, index, totalSteps }: StepItemProps) {
   });
 
   return (
-    <div
-      ref={itemRef}
-      className="flex flex-1 flex-col items-center text-center sm:text-left lg:items-center lg:text-center"
+    <motion.div
+      variants={fadeInUp}
+      className="flex flex-1 flex-col items-center text-center sm:text-left  lg:items-center lg:text-center"
     >
       <article className="relative flex w-full flex-col items-center lg:items-center">
         <motion.div
@@ -96,22 +88,12 @@ function StepItem({ step, index, totalSteps }: StepItemProps) {
         >
           <motion.div
             style={{
-              scaleY: fillScale,
-              transformOrigin: "top center",
-              background:
-                "linear-gradient(135deg, color-mix(in oklab, var(--brand-fir) 18%, white), color-mix(in oklab, var(--brand-fir) 10%, white))",
-            }}
-            className="absolute inset-0 rounded-full lg:hidden"
-          />
-
-          <motion.div
-            style={{
               scaleX: fillScale,
               transformOrigin: "left center",
               background:
                 "linear-gradient(135deg, color-mix(in oklab, var(--brand-fir) 18%, white), color-mix(in oklab, var(--brand-fir) 10%, white))",
             }}
-            className="absolute inset-0 hidden rounded-full lg:block"
+            className="absolute inset-0 rounded-full"
           />
 
           <motion.div
@@ -190,14 +172,42 @@ function StepItem({ step, index, totalSteps }: StepItemProps) {
           {step.description}
         </p>
       </article>
-    </div>
+    </motion.div>
   );
 }
 
 export function WorkMethodSection() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(sectionRef, {
+    amount: "some",
+    margin: "-10% 0px -10% 0px",
+  });
+  const prefersReducedMotion = useReducedMotion();
+  const progress = useMotionValue(0);
+  const smoothProgress = useSpring(progress, {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.5,
+  });
+
+  useEffect(() => {
+    if (!isInView) {
+      progress.jump(0);
+      smoothProgress.jump(0);
+      return;
+    }
+
+    const controls = animate(progress, 1, {
+      duration: prefersReducedMotion ? 0 : 2.4,
+      ease: [0.22, 1, 0.36, 1],
+    });
+
+    return () => controls.stop();
+  }, [isInView, prefersReducedMotion, progress, smoothProgress]);
+
   return (
     <div className="w-full bg-background py-16 sm:py-24 lg:py-32">
-      <div>
+      <div ref={sectionRef}>
         <Section
           id="methode"
           className="mx-auto scroll-mt-24 px-6 text-brand-ink lg:scroll-mt-28 lg:px-12 xl:px-20"
@@ -225,16 +235,23 @@ export function WorkMethodSection() {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-10 sm:justify-items-center md:align-items-center sm:gap-x-8 sm:gap-y-14 lg:flex lg:flex-row xl:items-start lg:justify-between lg:gap-4">
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              className="grid grid-cols-1 gap-10 sm:justify-items-center md:align-items-center sm:gap-x-8 sm:gap-y-14 lg:flex lg:flex-row xl:items-start lg:justify-between lg:gap-4"
+            >
               {workMethodSteps.map((step, index) => (
                 <StepItem
                   key={step.id}
                   step={step}
                   index={index}
                   totalSteps={workMethodSteps.length}
+                  smoothProgress={smoothProgress}
                 />
               ))}
-            </div>
+            </motion.div>
           </div>
         </Section>
       </div>
