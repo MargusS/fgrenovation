@@ -12,7 +12,7 @@ export function ServicesGrid() {
 
       <div className="absolute inset-0 z-0">
         <img
-          src="/media/textures-bg.jpg"
+          src="/media/textures-bg.webp"
           alt=""
           className="w-full h-full object-cover object-center opacity-70"
           aria-hidden="true"

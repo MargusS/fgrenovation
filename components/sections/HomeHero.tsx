@@ -8,8 +8,8 @@ import { fadeInUp, fadeIn } from "@/lib/motion";
 import { PaintWord } from "@/components/ui/PaintWord";
 
 const HERO_IMAGES = [
-	"/projects/4/before.JPG",
-	"/projects/4/after.png",
+	"/projects/4/before.webp",
+	"/projects/4/after.webp",
 ];
 
 const trustBadges = [

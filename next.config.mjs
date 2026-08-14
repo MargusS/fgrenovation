@@ -5,6 +5,7 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	output: "export",
     typescript: {
         ignoreBuildErrors: true,
     },
@@ -12,7 +13,7 @@ const nextConfig = {
         root: projectRoot,
     },
     images: {
-        unoptimized: false,
+        unoptimized: true,
     },
 };
 
