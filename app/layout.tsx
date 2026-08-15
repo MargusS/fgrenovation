@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   authors: [{ name: "FG Rénovation" }],
   creator: "FG Rénovation",
   publisher: "FG Rénovation",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   robots: {
     index: true,
     follow: true,
