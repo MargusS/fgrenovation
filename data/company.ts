@@ -1,19 +1,23 @@
 export const company = {
   name: "FG Rénovation",
   tagline: "L'art du détail.",
-  location: {
-    address: "Rue du Lac 22b",
-    city: "1020 Renens",
-    canton: "Vaud",
-    country: "Suisse",
-    coordinates: {
-      lat: 46.5537,
-      lng: 6.5528,
+  locations: [
+    {
+      label: "Bureau",
+      address: "Rue du Lac 22b, 1020 Renens",
+      directionsUrl:
+        "https://www.google.com/maps/dir/?api=1&destination=Rue%20du%20Lac%2022b%2C%201020%20Renens%2C%20Switzerland",
     },
-  },
+    {
+      label: "Atelier",
+      address: "Chemin des Lentillières 20, BOX 22, 1023 Crissier",
+      directionsUrl:
+        "https://www.google.com/maps/dir/?api=1&destination=Chemin%20des%20Lentilli%C3%A8res%2020%2C%201023%20Crissier%2C%20Switzerland",
+    },
+  ],
   contact: {
-    phone: "+41 076 48 84 684",
-    email: "contact@fg-renovation.ch",
+    phone: "+41 76 488 46 84",
+    email: "info@fg-renovation.ch",
     website: "www.fg-renovation.ch",
   },
   social: {
