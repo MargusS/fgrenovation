@@ -32,6 +32,7 @@ export function ContactSection() {
 			icon: LinkedinIcon,
 		},
 	] as const;
+	const [bureau, atelier] = company.locations;
 
 	return (
 		<div className="w-full bg-brand-fir pt-6 pb-2 lg:pt-20 lg:pb-10">
@@ -82,9 +83,23 @@ export function ContactSection() {
 							/>
 							<ContactItem
 								icon={<GeoLocationOutlineIcon height="1.6em" />}
-								label="Adresse"
-								value={`${company.location.address}, ${company.location.city}`}
-							/>
+								label="Location"
+							>
+								<div className="space-y-2 text-sm text-white">
+									{company.locations.map((location) => (
+										<a
+											key={location.label}
+											href={location.directionsUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="block transition-opacity hover:opacity-75"
+										>
+											<span className="font-medium">{location.label}</span>
+											<span className="text-white/90"> — {location.address}</span>
+										</a>
+									))}
+								</div>
+							</ContactItem>
 							<ContactItem
 								icon={<ClockIcon height="1.6em" />}
 								label="Horaires"
@@ -120,9 +135,50 @@ export function ContactSection() {
 						initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true, margin: "-100px" }}
-						className="relative h-[min(60vh,600px)] bg-stone-800 lg:h-full lg:min-h-[400px]"
+						className="grid h-[min(48vh,460px)] grid-rows-2 overflow-hidden bg-stone-800 lg:h-[440px]"
 					>
-						<iframe
+
+						<div className="relative min-h-0">
+							<a
+								href={bureau.directionsUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Itinéraire vers le bureau FG Rénovation"
+								className="block h-full w-full"
+							>
+								<img
+									src="/images/contact/bureau-map.webp"
+									alt="Plan de situation du bureau FG Rénovation"
+									width={1600}
+									height={922}
+									loading="lazy"
+									decoding="async"
+									className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+								/>
+							</a>
+							<div className="pointer-events-none absolute inset-0 bg-foreground/20" />
+						</div>
+						<div className="relative min-h-0 border-b border-white/20">
+							<a
+								href={atelier.directionsUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Itinéraire vers l'atelier FG Rénovation"
+								className="block h-full w-full"
+							>
+								<img
+									src="/images/contact/atelier-map.webp"
+									alt="Plan de situation de l'atelier FG Rénovation"
+									width={1600}
+									height={922}
+									loading="lazy"
+									decoding="async"
+									className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02]"
+								/>
+							</a>
+							<div className="pointer-events-none absolute inset-0 bg-foreground/20" />
+						</div>
+						{/* <iframe
 							src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1576.5847269344831!2d6.588468704657873!3d46.5280311124846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e92c0fa7390cad%3A0x995bfa45a4e7f824!2sFG%20-%20R%C3%A9novation%20S%C3%A0rl!5e0!3m2!1ses!2ses!4v1781888939909!5m2!1ses!2ses`}
 							width="100%"
 							height="100%"
@@ -131,8 +187,7 @@ export function ContactSection() {
 							referrerPolicy="no-referrer-when-downgrade"
 							title="Localisation FG Rénovation"
 							className="absolute inset-0 w-full h-full"
-						/>
-						<div className="pointer-events-none absolute inset-0 bg-foreground/20" />
+						/> */}
 					</motion.div>
 				</div>
 

@@ -7,9 +7,10 @@ import { fadeInUp } from "@/lib/motion";
 interface ContactItemProps {
   icon: React.ReactNode;
   label: string;
-  value: string;
+  value?: string;
   href?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export function ContactItem({
@@ -18,6 +19,7 @@ export function ContactItem({
   value,
   href,
   className,
+  children,
 }: ContactItemProps) {
   const content = (
     <div className="flex items-start gap-4">
@@ -26,7 +28,7 @@ export function ContactItem({
         <span className="block text-xs font-medium uppercase tracking-[0.15em] text-white/75">
           {label}
         </span>
-        <span className="block text-sm text-white">{value}</span>
+        {children ?? <span className="block text-sm text-white">{value}</span>}
       </div>
     </div>
   );
