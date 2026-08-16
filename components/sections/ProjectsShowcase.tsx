@@ -187,6 +187,8 @@ export function ProjectsShowcase() {
 												src={project.imageBefore}
 												alt={`${project.title} avant`}
 												className="h-full w-full object-cover object-center"
+												loading="lazy"
+												decoding="async"
 											/>
 										)}
 										<span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">
@@ -216,6 +218,8 @@ export function ProjectsShowcase() {
 												src={project.imageAfter}
 												alt={`${project.title} après`}
 												className="h-full w-full object-cover object-center"
+												loading="lazy"
+												decoding="async"
 											/>
 										)}
 										<span className="absolute bottom-4 right-4 rounded-full bg-stone-100/75 px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-stone-700 backdrop-blur-md">

@@ -211,6 +211,8 @@ export function HomeHero() {
 								src={HERO_IMAGES[currentImg]}
 								alt={`Projet rénovation ${currentImg + 1}`}
 								className="h-full w-full object-cover object-center"
+								loading="eager"
+								decoding="async"
 							/>
 						</motion.div>
 					</AnimatePresence>

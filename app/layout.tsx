@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter,  Epilogue } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,6 +17,7 @@ const epilogue = Epilogue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.fgrenov.ch"),
   title: "FG Rénovation | Plâtrerie, Peinture, Sols et Façades | Canton de Vaud",
   description:
     "Entreprise de rénovation dans le canton de Vaud. Spécialistes en plâtrerie, peinture, revêtements de sols et façades. Plus de 15 ans d'expérience au service des particuliers et professionnels.",
@@ -42,19 +44,31 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_CH",
-    url: "https://www.fg-renovation.ch",
+    url: "https://www.fgrenov.ch",
     siteName: "FG Rénovation",
     title: "FG Rénovation | Rénovation de qualité dans le canton de Vaud",
     description:
       "Entreprise de rénovation spécialisée en plâtrerie, peinture, sols et façades. Interventions soignées pour particuliers et professionnels.",
+    images: [
+      {
+        url: "/media/hero1.webp",
+        width: 1200,
+        height: 630,
+        alt: "FG Rénovation - Plâtrerie, Peinture, Sols et Façades",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FG Rénovation | Canton de Vaud",
     description: "Rénovation de qualité - Plâtrerie, Peinture, Sols, Façades",
+    images: ["/media/hero1.webp"],
   },
   alternates: {
-    canonical: "https://www.fg-renovation.ch",
+    canonical: "https://www.fgrenov.ch",
+  },
+  icons: {
+    icon: "/icon.svg",
   },
 };
 
@@ -73,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${epilogue.variable} bg-background`}>
       <body className="font-sans antialiased">
+        <StructuredData />
         <main className="w-full min-h-screen">
           <div className="w-full min-h-screen max-w-[2900px] mx-auto">
             {children}

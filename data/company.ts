@@ -18,7 +18,7 @@ export const company = {
   contact: {
     phone: "+41 76 488 46 84",
     email: "info@fg-renovation.ch",
-    website: "www.fg-renovation.ch",
+    website: "www.fgrenov.ch",
   },
   social: {
     facebook: "https://www.facebook.com/",
